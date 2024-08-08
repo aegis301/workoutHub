@@ -1,0 +1,521 @@
+{
+    "Bench Press": {
+        "name": "Bench Press",
+        "primaryMuscleGroup": "Chest",
+        "secondaryMuscleGroups": [
+            "Triceps",
+            "Shoulders"
+        ],
+        "equipment": [
+            "Barbell",
+            "Dumbells",
+            "Smith Machine"
+        ],
+        "type": "Strength"
+    },
+    "Incline Bench Press": {
+        "name": "Incline Bench Press",
+        "primaryMuscleGroup": "Chest",
+        "secondaryMuscleGroups": [
+            "Triceps",
+            "Front Delt"
+        ],
+        "equipment": [
+            "Barbell",
+            "Dumbells",
+            "Smith Machine"
+        ],
+        "type": "Strength"
+    },
+    "Bent Over Row": {
+        "name": "Bent Over Row",
+        "primaryMuscleGroup": "Lat",
+        "secondaryMuscleGroups": [
+            "Biceps",
+            "Trap",
+            "Rear Delt"
+        ],
+        "equipment": [
+            "Barbell",
+            "Dumbells",
+            "Smith Machine"
+        ],
+        "type": "Strength"
+    },
+    "Lunge": {
+        "name": "Lunge",
+        "primaryMuscleGroup": "Quads",
+        "secondaryMuscleGroups": [
+            "Glutes",
+            "Hamstrings",
+            "Calves"
+        ],
+        "equipment": [
+            "Body Weight",
+            "Dumbells",
+            "Barbell",
+            "Smith Machine"
+        ],
+        "type": "Strength"
+    },
+    "Bicep Curl": {
+        "name": "Bicep Curl",
+        "primaryMuscleGroup": "Biceps",
+        "secondaryMuscleGroups": [],
+        "equipment": [
+            "Dumbells",
+            "Barbell",
+            "Cable"
+        ],
+        "type": "Strength"
+    },
+    "Pull Up": {
+        "name": "Pull Up",
+        "primaryMuscleGroup": "Lat",
+        "secondaryMuscleGroups": [
+            "Biceps",
+            "Rear Delt",
+            "Trap"
+        ],
+        "equipment": [
+            "Body Weight",
+            "Assisted"
+        ],
+        "type": "Strength"
+    },
+    "Tennis": {
+        "name": "Tennis",
+        "primaryMuscleGroup": "Whole Body",
+        "secondaryMuscleGroups": [],
+        "equipment": [],
+        "type": "Cardio"
+    },
+    "Deadlift": {
+        "name": "Deadlift",
+        "primaryMuscleGroup": "Hamstrings",
+        "secondaryMuscleGroups": [
+            "Glutes",
+            "Lower Back"
+        ],
+        "equipment": [
+            "Barbell",
+            "Dumbells",
+            "Cable",
+            "Kettlebell"
+        ],
+        "type": "Strength"
+    },
+    "Lateral Raise": {
+        "name": "Lateral Raise",
+        "primaryMuscleGroup": "Side Delt",
+        "secondaryMuscleGroups": [
+            "Front Delt",
+            "Rear Delt"
+        ],
+        "equipment": [
+            "Dumbells",
+            "Cable"
+        ],
+        "type": "Strength"
+    },
+    "Rowing": {
+        "name": "Rowing",
+        "primaryMuscleGroup": "Back",
+        "secondaryMuscleGroups": [
+            "Biceps",
+            "Rear Delt",
+            "Trap",
+            "Quads",
+            "Hamstrings",
+            "Calves"
+        ],
+        "equipment": [
+            "Machine"
+        ],
+        "type": "Cardio"
+    },
+    "Squat": {
+        "name": "Squat",
+        "primaryMuscleGroup": "Quads",
+        "secondaryMuscleGroups": [
+            "Glutes",
+            "Hamstrings",
+            "Calves"
+        ],
+        "equipment": [
+            "Barbell",
+            "Dumbells",
+            "Smith Machine"
+        ],
+        "type": "Strength"
+    },
+    "Push Up": {
+        "name": "Push Up",
+        "primaryMuscleGroup": "Chest",
+        "secondaryMuscleGroups": [
+            "Triceps",
+            "Front Delt"
+        ],
+        "equipment": [
+            "Body Weight"
+        ],
+        "type": "Strength"
+    },
+    "Triceps Extension": {
+        "name": "Triceps Extension",
+        "primaryMuscleGroup": "Triceps",
+        "secondaryMuscleGroups": [],
+        "equipment": [
+            "Dumbbells",
+            "Barbell",
+            "Cable",
+            "Machine"
+        ],
+        "type": "Strength"
+    },
+    "Bulgarian Split Squat": {
+        "name": "Bulgarian Split Squat",
+        "primaryMuscleGroup": "Quads",
+        "secondaryMuscleGroups": [
+            "Glutes",
+            "Hamstrings"
+        ],
+        "equipment": [
+            "Body Weight",
+            "Dumbbells",
+            "Barbell",
+            "Smith Machine"
+        ],
+        "type": "Strength"
+    },
+    "Seated Overhead Press": {
+        "name": "Seated Overhead Press",
+        "primaryMuscleGroup": "Shoulders",
+        "secondaryMuscleGroups": [
+            "Triceps"
+        ],
+        "equipment": [
+            "Barbell",
+            "Dumbbells"
+        ],
+        "type": "Strength"
+    },
+    "Russian Twist": {
+        "name": "Russian Twist",
+        "primaryMuscleGroup": "Abs",
+        "secondaryMuscleGroups": [
+            "Obliques"
+        ],
+        "equipment": [
+            "Body Weight",
+            "Plate",
+            "Medicine Ball"
+        ],
+        "type": "Strength"
+    },
+    "Flat Leg Raise": {
+        "name": "Flat Leg Raise",
+        "primaryMuscleGroup": "Abs",
+        "secondaryMuscleGroups": [
+            "Hip Flexors"
+        ],
+        "equipment": [
+            "Body Weight"
+        ],
+        "type": "Strength"
+    },
+    "Reverse Fly": {
+        "name": "Reverse Fly",
+        "primaryMuscleGroup": "Rear Delt",
+        "secondaryMuscleGroups": [
+            "Trap",
+            "Rhomboids"
+        ],
+        "equipment": [
+            "Dumbbells",
+            "Machine",
+            "Cable"
+        ],
+        "type": "Strength"
+    },
+    "Chest Dip": {
+        "name": "Chest Dip",
+        "primaryMuscleGroup": "Chest",
+        "secondaryMuscleGroups": [
+            "Triceps",
+            "Shoulders"
+        ],
+        "equipment": [
+            "Body Weight",
+            "Assisted"
+        ],
+        "type": "Strength"
+    },
+    "Inverted Row": {
+        "name": "Inverted Row",
+        "primaryMuscleGroup": "Back",
+        "secondaryMuscleGroups": [
+            "Biceps",
+            "Rear Delt"
+        ],
+        "equipment": [
+            "Body Weight"
+        ],
+        "type": "Strength"
+    },
+    "Front Raise": {
+        "name": "Front Raise",
+        "primaryMuscleGroup": "Front Delt",
+        "secondaryMuscleGroups": [
+            "Side Delt"
+        ],
+        "equipment": [
+            "Plate",
+            "Cable"
+        ],
+        "type": "Strength"
+    },
+    "Standing Calf Raise": {
+        "name": "Standing Calf Raise",
+        "primaryMuscleGroup": "Calves",
+        "secondaryMuscleGroups": [],
+        "equipment": [
+            "Barbell"
+        ],
+        "type": "Strength"
+    },
+    "Running": {
+        "name": "Running",
+        "primaryMuscleGroup": "Whole Body",
+        "secondaryMuscleGroups": [],
+        "equipment": [],
+        "type": "Cardio"
+    },
+    "Upright Row": {
+        "name": "Upright Row",
+        "primaryMuscleGroup": "Shoulders",
+        "secondaryMuscleGroups": [
+            "Trap"
+        ],
+        "equipment": [
+            "Barbell",
+            "Dumbbells"
+        ],
+        "type": "Strength"
+    },
+    "Bench Dip": {
+        "name": "Bench Dip",
+        "primaryMuscleGroup": "Triceps",
+        "secondaryMuscleGroups": [
+            "Chest",
+            "Shoulders"
+        ],
+        "equipment": [
+            "Body Weight"
+        ],
+        "type": "Strength"
+    },
+    "Yoga": {
+        "name": "Yoga",
+        "primaryMuscleGroup": "Whole Body",
+        "secondaryMuscleGroups": [],
+        "equipment": [],
+        "type": "Flexibility"
+    },
+    "Overhead Press": {
+        "name": "Overhead Press",
+        "primaryMuscleGroup": "Shoulders",
+        "secondaryMuscleGroups": [
+            "Triceps"
+        ],
+        "equipment": [
+            "Dumbbells",
+            "Barbell",
+            "Smith Machine",
+            "Cable"
+        ],
+        "type": "Strength"
+    },
+    "Chest Fly": {
+        "name": "Chest Fly",
+        "primaryMuscleGroup": "Chest",
+        "secondaryMuscleGroups": [
+            "Front Delt"
+        ],
+        "equipment": [
+            "Dumbbells",
+            "Cable"
+        ],
+        "type": "Strength"
+    },
+    "Single Leg Deadlift": {
+        "name": "Single Leg Deadlift",
+        "primaryMuscleGroup": "Hamstrings",
+        "secondaryMuscleGroups": [
+            "Glutes",
+            "Lower Back"
+        ],
+        "equipment": [
+            "Dumbbells"
+        ],
+        "type": "Strength"
+    },
+    "Single Leg Standing Calf Raises": {
+        "name": "Single Leg Standing Calf Raises",
+        "primaryMuscleGroup": "Calves",
+        "secondaryMuscleGroups": [],
+        "equipment": [
+            "Body Weight",
+            "Dumbbells"
+        ],
+        "type": "Strength"
+    },
+    "Pullover": {
+        "name": "Pullover",
+        "primaryMuscleGroup": "Chest",
+        "secondaryMuscleGroups": [
+            "Lat",
+            "Triceps"
+        ],
+        "equipment": [
+            "Dumbbells",
+            "Cable"
+        ],
+        "type": "Strength"
+    },
+    "Lat Pulldown": {
+        "name": "Lat Pulldown",
+        "primaryMuscleGroup": "Lat",
+        "secondaryMuscleGroups": [
+            "Biceps",
+            "Rear Delt"
+        ],
+        "equipment": [
+            "Cable",
+            "Machine"
+        ],
+        "type": "Strength"
+    },
+    "Seated Row": {
+        "name": "Seated Row",
+        "primaryMuscleGroup": "Back",
+        "secondaryMuscleGroups": [
+            "Biceps",
+            "Rear Delt"
+        ],
+        "equipment": [
+            "Machine",
+            "Cable"
+        ],
+        "type": "Strength"
+    },
+    "Hip Abductor": {
+        "name": "Hip Abductor",
+        "primaryMuscleGroup": "Hip Abductors",
+        "secondaryMuscleGroups": [],
+        "equipment": [
+            "Machine",
+            "Cable"
+        ],
+        "type": "Strength"
+    },
+    "Lying Leg Curl": {
+        "name": "Lying Leg Curl",
+        "primaryMuscleGroup": "Hamstrings",
+        "secondaryMuscleGroups": [],
+        "equipment": [
+            "Machine"
+        ],
+        "type": "Strength"
+    },
+    "Leg Extension": {
+        "name": "Leg Extension",
+        "primaryMuscleGroup": "Quads",
+        "secondaryMuscleGroups": [],
+        "equipment": [
+            "Machine"
+        ],
+        "type": "Strength"
+    },
+    "Back Extension": {
+        "name": "Back Extension",
+        "primaryMuscleGroup": "Lower Back",
+        "secondaryMuscleGroups": [
+            "Glutes",
+            "Hamstrings"
+        ],
+        "equipment": [
+            "Machine"
+        ],
+        "type": "Strength"
+    },
+    "Seated Calf Raise": {
+        "name": "Seated Calf Raise",
+        "primaryMuscleGroup": "Calves",
+        "secondaryMuscleGroups": [],
+        "equipment": [
+            "Plate Loaded"
+        ],
+        "type": "Strength"
+    },
+    "Shoulder Press": {
+        "name": "Shoulder Press",
+        "primaryMuscleGroup": "Shoulders",
+        "secondaryMuscleGroups": [
+            "Triceps"
+        ],
+        "equipment": [
+            "Machine"
+        ],
+        "type": "Strength"
+    },
+    "Triceps Pushdown": {
+        "name": "Triceps Pushdown",
+        "primaryMuscleGroup": "Triceps",
+        "secondaryMuscleGroups": [],
+        "equipment": [
+            "Cable"
+        ],
+        "type": "Strength"
+    },
+    "Bicep Curl (Cable)": {
+        "name": "Bicep Curl",
+        "primaryMuscleGroup": "Biceps",
+        "secondaryMuscleGroups": [],
+        "equipment": [
+            "Cable"
+        ],
+        "type": "Strength"
+    },
+    "Chest Press": {
+        "name": "Chest Press",
+        "primaryMuscleGroup": "Chest",
+        "secondaryMuscleGroups": [
+            "Front Delt",
+            "Triceps"
+        ],
+        "equipment": [
+            "Machine",
+            "Cable"
+        ],
+        "type": "Strength"
+    },
+    "Crunch": {
+        "name": "Crunch",
+        "primaryMuscleGroup": "Abs",
+        "secondaryMuscleGroups": [],
+        "equipment": [
+            "Machine"
+        ],
+        "type": "Strength"
+    },
+    "Decline Crunch": {
+        "name": "Decline Crunch",
+        "primaryMuscleGroup": "Abs",
+        "secondaryMuscleGroups": [],
+        "equipment": [
+            "Body Weight"
+        ],
+        "type": "Strength"
+    }
+}
