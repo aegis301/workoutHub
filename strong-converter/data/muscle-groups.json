@@ -1,0 +1,46 @@
+{
+    "Upper Body": {
+        "Arms": {
+            "Biceps": {},
+            "Triceps": {},
+            "Forearms": {}
+        },
+        "Shoulders": {
+            "Front Deltoids": {},
+            "Side Deltoids": {},
+            "Rear Deltoids": {}
+        },
+        "Back": {
+            "Upper Back": {
+                "Trapezius": {},
+                "Rhomboids": {}
+            },
+            "Lower Back": {
+                "Erector Spinae": {}
+            },
+            "Latissimus": {}
+        },
+        "Chest": {
+            "Upper Chest": {},
+            "Lower Chest": {}
+        }
+    },
+    "Lower Body": {
+        "Upper Legs": {
+            "Quadriceps": {},
+            "Hamstrings": {},
+            "Glutes": {},
+            "Hip Flexors": {},
+            "Adductors": {},
+            "Abductors": {}
+        },
+        "Lower Legs": {
+            "Calves": {}
+        }
+    },
+    "Core": {
+        "Rectus Abdominis": {},
+        "Obliques": {},
+        "Transverse Abdominis": {}
+    }
+}
