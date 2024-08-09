@@ -517,5 +517,253 @@
             "Body Weight"
         ],
         "type": "Strength"
+    },
+    "Cable Crunch": {
+        "name": "Cable Crunch",
+        "primaryMuscleGroup": "Abs",
+        "secondaryMuscleGroups": [],
+        "equipment": [
+            "Cable"
+        ],
+        "type": "Strength"
+    },
+    "Leg Raise": {
+        "name": "Leg Raise",
+        "primaryMuscleGroup": "Abs",
+        "secondaryMuscleGroups": [],
+        "equipment": [
+            "Body Weight"
+        ],
+        "type": "Strength"
+    },
+    "Hip Adductor": {
+        "name": "Hip Adductor",
+        "primaryMuscleGroup": "Adductors",
+        "secondaryMuscleGroups": [],
+        "equipment": [
+            "Machine",
+            "Cable"
+        ],
+        "type": "Strength"
+    },
+    "Seated Leg Press": {
+        "name": "Seated Leg Press",
+        "primaryMuscleGroup": "Quadriceps",
+        "secondaryMuscleGroups": [
+            "Glutes",
+            "Hamstrings"
+        ],
+        "equipment": [
+            "Machine"
+        ],
+        "type": "Strength"
+    },
+    "Seated Wide-Grip Row": {
+        "name": "Seated Wide-Grip Row",
+        "primaryMuscleGroup": "Back",
+        "secondaryMuscleGroups": [
+            "Biceps",
+            "Rear Deltoids"
+        ],
+        "equipment": [
+            "Cable"
+        ],
+        "type": "Strength"
+    },
+    "Lat Pulldown - Close Grip": {
+        "name": "Lat Pulldown - Close Grip",
+        "primaryMuscleGroup": "Lat",
+        "secondaryMuscleGroups": [
+            "Biceps",
+            "Rear Deltoids"
+        ],
+        "equipment": [
+            "Cable"
+        ],
+        "type": "Strength"
+    },
+    "Shoulder External Rotation": {
+        "name": "Shoulder External Rotation",
+        "primaryMuscleGroup": "Rotator Cuff",
+        "secondaryMuscleGroups": [],
+        "equipment": [
+            "Cable"
+        ],
+        "type": "Strength"
+    },
+    "Side Bend": {
+        "name": "Side Bend",
+        "primaryMuscleGroup": "Obliques",
+        "secondaryMuscleGroups": [],
+        "equipment": [
+            "Cable"
+        ],
+        "type": "Strength"
+    },
+    "Lat Push Down": {
+        "name": "Lat Push Down",
+        "primaryMuscleGroup": "Lat",
+        "secondaryMuscleGroups": [
+            "Triceps"
+        ],
+        "equipment": [
+            "Cable"
+        ],
+        "type": "Strength"
+    },
+    "Jackknife Sit Up": {
+        "name": "Jackknife Sit Up",
+        "primaryMuscleGroup": "Abs",
+        "secondaryMuscleGroups": [],
+        "equipment": [
+            "Body Weight"
+        ],
+        "type": "Strength"
+    },
+    "Triceps Press": {
+        "name": "Triceps Press",
+        "primaryMuscleGroup": "Triceps",
+        "secondaryMuscleGroups": [],
+        "equipment": [
+            "Machine"
+        ],
+        "type": "Strength"
+    },
+    "Calf Press on Seated Leg Press": {
+        "name": "Calf Press on Seated Leg Press",
+        "primaryMuscleGroup": "Calves",
+        "secondaryMuscleGroups": [],
+        "equipment": [
+            "Machine"
+        ],
+        "type": "Strength"
+    },
+    "Good Morning": {
+        "name": "Good Morning",
+        "primaryMuscleGroup": "Lower Back",
+        "secondaryMuscleGroups": [
+            "Hamstrings",
+            "Glutes"
+        ],
+        "equipment": [
+            "Barbell"
+        ],
+        "type": "Strength"
+    },
+    "Trap Bar Deadlift": {
+        "name": "Trap Bar Deadlift",
+        "primaryMuscleGroup": "Hamstrings",
+        "secondaryMuscleGroups": [
+            "Glutes",
+            "Lower Back"
+        ],
+        "equipment": [
+            "Trap Bar"
+        ],
+        "type": "Strength"
+    },
+    "Face Pull": {
+        "name": "Face Pull",
+        "primaryMuscleGroup": "Rear Deltoids",
+        "secondaryMuscleGroups": [
+            "Trapezius",
+            "Rhomboids"
+        ],
+        "equipment": [
+            "Cable"
+        ],
+        "type": "Strength"
+    },
+    "Front Squat": {
+        "name": "Front Squat",
+        "primaryMuscleGroup": "Quadriceps",
+        "secondaryMuscleGroups": [
+            "Glutes",
+            "Hamstrings"
+        ],
+        "equipment": [
+            "Barbell"
+        ],
+        "type": "Strength"
+    },
+    "Sit Up": {
+        "name": "Sit Up",
+        "primaryMuscleGroup": "Abs",
+        "secondaryMuscleGroups": [],
+        "equipment": [
+            "Body Weight"
+        ],
+        "type": "Strength"
+    },
+    "Iso-Lateral Row": {
+        "name": "Iso-Lateral Row",
+        "primaryMuscleGroup": "Back",
+        "secondaryMuscleGroups": [
+            "Biceps",
+            "Rear Deltoids"
+        ],
+        "equipment": [
+            "Machine"
+        ],
+        "type": "Strength"
+    },
+    "Leg Press": {
+        "name": "Leg Press",
+        "primaryMuscleGroup": "Quadriceps",
+        "secondaryMuscleGroups": [
+            "Glutes",
+            "Hamstrings"
+        ],
+        "equipment": [
+            "Machine"
+        ],
+        "type": "Strength"
+    },
+    "Stiff Deadlift": {
+        "name": "Stiff Deadlift",
+        "primaryMuscleGroup": "Hamstrings",
+        "secondaryMuscleGroups": [
+            "Glutes",
+            "Lower Back"
+        ],
+        "equipment": [
+            "Cable"
+        ],
+        "type": "Strength"
+    },
+    "Glute Bridge": {
+        "name": "Glute Bridge",
+        "primaryMuscleGroup": "Glutes",
+        "secondaryMuscleGroups": [
+            "Hamstrings"
+        ],
+        "equipment": [
+            "Body Weight"
+        ],
+        "type": "Strength"
+    },
+    "Hip Thrust": {
+        "name": "Hip Thrust",
+        "primaryMuscleGroup": "Glutes",
+        "secondaryMuscleGroups": [
+            "Hamstrings",
+            "Lower Back"
+        ],
+        "equipment": [
+            "Barbell"
+        ],
+        "type": "Strength"
+    },
+    "Pull Over": {
+        "name": "Pull Over",
+        "primaryMuscleGroup": "Chest",
+        "secondaryMuscleGroups": [
+            "Lat"
+        ],
+        "equipment": [
+            "Dumbbells",
+            "Cable"
+        ],
+        "type": "Strength"
     }
 }
