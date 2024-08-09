@@ -18,7 +18,7 @@
         "primaryMuscleGroup": "Chest",
         "secondaryMuscleGroups": [
             "Triceps",
-            "Front Delt"
+            "Front Deltoids"
         ],
         "equipment": [
             "Barbell",
@@ -29,11 +29,11 @@
     },
     "Bent Over Row": {
         "name": "Bent Over Row",
-        "primaryMuscleGroup": "Lat",
+        "primaryMuscleGroup": "Latissimus",
         "secondaryMuscleGroups": [
             "Biceps",
-            "Trap",
-            "Rear Delt"
+            "Trapezius",
+            "Rear Deltoids"
         ],
         "equipment": [
             "Barbell",
@@ -44,7 +44,7 @@
     },
     "Lunge": {
         "name": "Lunge",
-        "primaryMuscleGroup": "Quads",
+        "primaryMuscleGroup": "Quadriceps",
         "secondaryMuscleGroups": [
             "Glutes",
             "Hamstrings",
@@ -71,11 +71,11 @@
     },
     "Pull Up": {
         "name": "Pull Up",
-        "primaryMuscleGroup": "Lat",
+        "primaryMuscleGroup": "Latissimus",
         "secondaryMuscleGroups": [
             "Biceps",
-            "Rear Delt",
-            "Trap"
+            "Rear Deltoids",
+            "Trapezius"
         ],
         "equipment": [
             "Body Weight",
@@ -107,10 +107,10 @@
     },
     "Lateral Raise": {
         "name": "Lateral Raise",
-        "primaryMuscleGroup": "Side Delt",
+        "primaryMuscleGroup": "Side Deltoids",
         "secondaryMuscleGroups": [
-            "Front Delt",
-            "Rear Delt"
+            "Front Deltoids",
+            "Rear Deltoids"
         ],
         "equipment": [
             "Dumbells",
@@ -123,9 +123,9 @@
         "primaryMuscleGroup": "Back",
         "secondaryMuscleGroups": [
             "Biceps",
-            "Rear Delt",
-            "Trap",
-            "Quads",
+            "Rear Deltoids",
+            "Trapezius",
+            "Quadriceps",
             "Hamstrings",
             "Calves"
         ],
@@ -136,7 +136,7 @@
     },
     "Squat": {
         "name": "Squat",
-        "primaryMuscleGroup": "Quads",
+        "primaryMuscleGroup": "Quadriceps",
         "secondaryMuscleGroups": [
             "Glutes",
             "Hamstrings",
@@ -154,7 +154,7 @@
         "primaryMuscleGroup": "Chest",
         "secondaryMuscleGroups": [
             "Triceps",
-            "Front Delt"
+            "Front Deltoids"
         ],
         "equipment": [
             "Body Weight"
@@ -175,7 +175,7 @@
     },
     "Bulgarian Split Squat": {
         "name": "Bulgarian Split Squat",
-        "primaryMuscleGroup": "Quads",
+        "primaryMuscleGroup": "Quadriceps",
         "secondaryMuscleGroups": [
             "Glutes",
             "Hamstrings"
@@ -190,7 +190,7 @@
     },
     "Seated Overhead Press": {
         "name": "Seated Overhead Press",
-        "primaryMuscleGroup": "Front Delt",
+        "primaryMuscleGroup": "Front Deltoids",
         "secondaryMuscleGroups": [
             "Chest",
             "Triceps"
@@ -227,9 +227,9 @@
     },
     "Reverse Fly": {
         "name": "Reverse Fly",
-        "primaryMuscleGroup": "Rear Delt",
+        "primaryMuscleGroup": "Rear Deltoids",
         "secondaryMuscleGroups": [
-            "Trap",
+            "Trapezius",
             "Rhomboids"
         ],
         "equipment": [
@@ -244,7 +244,7 @@
         "primaryMuscleGroup": "Chest",
         "secondaryMuscleGroups": [
             "Triceps",
-            "Front Delt"
+            "Front Deltoids"
         ],
         "equipment": [
             "Body Weight",
@@ -257,7 +257,7 @@
         "primaryMuscleGroup": "Back",
         "secondaryMuscleGroups": [
             "Biceps",
-            "Rear Delt"
+            "Rear Deltoids"
         ],
         "equipment": [
             "Body Weight"
@@ -266,9 +266,9 @@
     },
     "Front Raise": {
         "name": "Front Raise",
-        "primaryMuscleGroup": "Front Delt",
+        "primaryMuscleGroup": "Front Deltoids",
         "secondaryMuscleGroups": [
-            "Side Delt"
+            "Side Deltoids"
         ],
         "equipment": [
             "Plate",
@@ -299,7 +299,7 @@
         "name": "Upright Row",
         "primaryMuscleGroup": "Shoulders",
         "secondaryMuscleGroups": [
-            "Trap"
+            "Trapezius"
         ],
         "equipment": [
             "Barbell",
@@ -346,7 +346,7 @@
         "name": "Chest Fly",
         "primaryMuscleGroup": "Chest",
         "secondaryMuscleGroups": [
-            "Front Delt"
+            "Front Deltoids"
         ],
         "equipment": [
             "Dumbbells",
@@ -380,7 +380,7 @@
         "name": "Pullover",
         "primaryMuscleGroup": "Back",
         "secondaryMuscleGroups": [
-            "Lat",
+            "Latissimus",
             "Triceps"
         ],
         "equipment": [
@@ -390,10 +390,10 @@
     },
     "Lat Pulldown": {
         "name": "Lat Pulldown",
-        "primaryMuscleGroup": "Lat",
+        "primaryMuscleGroup": "Latissimus",
         "secondaryMuscleGroups": [
             "Biceps",
-            "Rear Delt"
+            "Rear Deltoids"
         ],
         "equipment": [
             "Cable",
@@ -406,7 +406,7 @@
         "primaryMuscleGroup": "Back",
         "secondaryMuscleGroups": [
             "Biceps",
-            "Rear Delt"
+            "Rear Deltoids"
         ],
         "equipment": [
             "Machine",
@@ -439,7 +439,7 @@
     },
     "Leg Extension": {
         "name": "Leg Extension",
-        "primaryMuscleGroup": "Quads",
+        "primaryMuscleGroup": "Quadriceps",
         "secondaryMuscleGroups": [],
         "equipment": [
             "Machine"
@@ -487,20 +487,11 @@
         ],
         "type": "Strength"
     },
-    "Bicep Curl (Cable)": {
-        "name": "Bicep Curl",
-        "primaryMuscleGroup": "Biceps",
-        "secondaryMuscleGroups": [],
-        "equipment": [
-            "Cable"
-        ],
-        "type": "Strength"
-    },
     "Chest Press": {
         "name": "Chest Press",
         "primaryMuscleGroup": "Chest",
         "secondaryMuscleGroups": [
-            "Front Delt",
+            "Front Deltoids",
             "Triceps"
         ],
         "equipment": [

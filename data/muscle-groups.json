@@ -26,19 +26,21 @@
         }
     },
     "Lower Body": {
-        "Upper Legs": {
-            "Quadriceps": {},
-            "Hamstrings": {},
-            "Glutes": {},
-            "Hip Flexors": {},
-            "Adductors": {},
-            "Abductors": {}
-        },
-        "Lower Legs": {
-            "Calves": {}
+        "Legs": {
+            "Upper Legs": {
+                "Quadriceps": {},
+                "Hamstrings": {},
+                "Glutes": {},
+                "Hip Flexors": {},
+                "Adductors": {},
+                "Abductors": {}
+            },
+            "Lower Legs": {
+                "Calves": {}
+            }
         }
     },
-    "Core": {
+    "Abs": {
         "Rectus Abdominis": {},
         "Obliques": {},
         "Transverse Abdominis": {}
