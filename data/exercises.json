@@ -190,8 +190,9 @@
     },
     "Seated Overhead Press": {
         "name": "Seated Overhead Press",
-        "primaryMuscleGroup": "Shoulders",
+        "primaryMuscleGroup": "Front Delt",
         "secondaryMuscleGroups": [
+            "Chest",
             "Triceps"
         ],
         "equipment": [
@@ -243,7 +244,7 @@
         "primaryMuscleGroup": "Chest",
         "secondaryMuscleGroups": [
             "Triceps",
-            "Shoulders"
+            "Front Delt"
         ],
         "equipment": [
             "Body Weight",
@@ -280,13 +281,16 @@
         "primaryMuscleGroup": "Calves",
         "secondaryMuscleGroups": [],
         "equipment": [
-            "Barbell"
+            "Barbell",
+            "Dumbbells",
+            "Smith Machine",
+            "Machine"
         ],
         "type": "Strength"
     },
     "Running": {
         "name": "Running",
-        "primaryMuscleGroup": "Whole Body",
+        "primaryMuscleGroup": "Legs",
         "secondaryMuscleGroups": [],
         "equipment": [],
         "type": "Cardio"
@@ -299,7 +303,9 @@
         ],
         "equipment": [
             "Barbell",
-            "Dumbbells"
+            "Dumbbells",
+            "Cable",
+            "Smith Machine"
         ],
         "type": "Strength"
     },
@@ -320,7 +326,7 @@
         "primaryMuscleGroup": "Whole Body",
         "secondaryMuscleGroups": [],
         "equipment": [],
-        "type": "Flexibility"
+        "type": "Mobility"
     },
     "Overhead Press": {
         "name": "Overhead Press",
@@ -372,13 +378,12 @@
     },
     "Pullover": {
         "name": "Pullover",
-        "primaryMuscleGroup": "Chest",
+        "primaryMuscleGroup": "Back",
         "secondaryMuscleGroups": [
             "Lat",
             "Triceps"
         ],
         "equipment": [
-            "Dumbbells",
             "Cable"
         ],
         "type": "Strength"
@@ -411,8 +416,10 @@
     },
     "Hip Abductor": {
         "name": "Hip Abductor",
-        "primaryMuscleGroup": "Hip Abductors",
-        "secondaryMuscleGroups": [],
+        "primaryMuscleGroup": "Abductors",
+        "secondaryMuscleGroups": [
+            "Glutes"
+        ],
         "equipment": [
             "Machine",
             "Cable"
@@ -422,7 +429,9 @@
     "Lying Leg Curl": {
         "name": "Lying Leg Curl",
         "primaryMuscleGroup": "Hamstrings",
-        "secondaryMuscleGroups": [],
+        "secondaryMuscleGroups": [
+            "Glutes"
+        ],
         "equipment": [
             "Machine"
         ],
