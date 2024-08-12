@@ -15,7 +15,7 @@ def augment_row(row, exercises):
     return row
 
 
-def main():
+def converter():
     data = pd.read_csv('data/strong.csv')
     # import exercise json
     exercises = json.load(open('data/exercises.json'))
@@ -30,4 +30,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    converter()
