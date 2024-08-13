@@ -1,6 +1,8 @@
 from pydantic import BaseModel
 from typing import List, Optional
 
+j
+
 
 class BaseExercise(BaseModel):
     name: str
