@@ -1,5 +1,7 @@
 import pandas as pd
 import json
+import os
+import datetime
 
 
 def strip_appendix(s):
@@ -9,7 +11,12 @@ def strip_appendix(s):
 
 def augment_row(row, exercises):
     """Augment a row with the exercise data from the exercises.json file"""
-    exercise = exercises[row['exercise']]
+    try:
+        exercise = exercises[row['exercise']]
+    except KeyError:
+        print(f"Exercise {
+              row['exercise']} not found in exercises.json, you might want to add it.")
+        return row
     row['primary_muscle_group'] = exercise['primaryMuscleGroup']
     row['secondary_muscle_group'] = exercise['secondaryMuscleGroups']
     return row
@@ -17,13 +24,21 @@ def augment_row(row, exercises):
 
 def filter_imports(data):
     """Exclude exercises that are already imported in the database, based on the last import date found in import.json"""
-    # get last import date
-    last_import_date = json.load(open('data/import.json'))['last_import_date']
-    # get all data rows that have been imported since the last import date
-    data = data[data['Date'] > last_import_date]
-    # write todays date to import.json
-    json.dump({'last_import_date': pd.Timestamp.now().strftime('%Y-%m-%d %H:%M:%S')},
-              open('data/import.json', 'w'))
+    # move all exports to the data/exports folder
+    os.makedirs('data/exports', exist_ok=True)
+    for file in os.listdir('data'):
+        if file.startswith('strong-') and file.endswith('.csv'):
+            os.rename(f'data/{file}', f'data/exports/{file}')
+    # get the date of each old export
+    dates = [pd.Timestamp(file.split('-', maxsplit=1)[-1].split('.')[0])
+             for file in os.listdir('data/exports')]
+    # convert dates to datetime
+    dates = [datetime.datetime(date.year, date.month, date.day)
+             for date in dates]
+    # get the latest date
+    latest_date = max(dates)
+    # exclude sets that are already imported by comparing the dates
+    data = data[data['Date'] > latest_date]
     return data
 
 
@@ -41,7 +56,7 @@ def converter(apply_filter=False):
     data = data.apply(augment_row, axis=1, exercises=exercises)
     # export data with date of today
     data.to_csv(
-        f'data/strong{pd.Timestamp.today().strftime('%Y-%m-%d')}.csv', index=False)
+        f'data/strong-{pd.Timestamp.today().strftime('%Y-%m-%d')}.csv', index=False)
 
 
 if __name__ == '__main__':
