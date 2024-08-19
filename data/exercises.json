@@ -766,5 +766,53 @@
             "Cable"
         ],
         "type": "Strength"
+    },
+    "Preacher Curl": {
+        "name": "Preacher Curl",
+        "primaryMuscleGroup": "Biceps",
+        "secondaryMuscleGroups": [],
+        "equipment": [
+            "Barbell",
+            "Dumbbells",
+            "Cable"
+        ],
+        "type": "Strength"
+    },
+    "Calf Press on Leg Press": {
+        "name": "Calf Press on Leg Press",
+        "primaryMuscleGroup": "Calves",
+        "secondaryMuscleGroups": [],
+        "equipment": [
+            "Machine"
+        ],
+        "type": "Strength"
+    },
+    "Swimming": {
+        "name": "Swimming",
+        "primaryMuscleGroup": "Whole Body",
+        "secondaryMuscleGroups": [],
+        "equipment": [],
+        "type": "Cardio"
+    },
+    "Wall Climbing": {
+        "name": "Wall Climbing",
+        "primaryMuscleGroup": "Whole Body",
+        "secondaryMuscleGroups": [],
+        "equipment": [],
+        "type": "Cardio"
+    },
+    "Hiking": {
+        "name": "Hiking",
+        "primaryMuscleGroup": "Whole Body",
+        "secondaryMuscleGroups": [],
+        "equipment": [],
+        "type": "Cardio"
+    },
+    "Road Cycling": {
+        "name": "Road Cycling",
+        "primaryMuscleGroup": "Legs",
+        "secondaryMuscleGroups": [],
+        "equipment": [],
+        "type": "Cardio"
     }
 }
