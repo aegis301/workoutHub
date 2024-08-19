@@ -2,31 +2,60 @@ from pydantic import BaseModel
 from typing import List, Optional
 
 
-class BaseExercise(BaseModel):
+class ExerciseBase(BaseModel):
     name: str
     primary_muscle_group: str
-    secondary_muscle_group: Optional[List[str]] | None = None
-    equipment: Optional[List[str]] | None = None
+    secondary_muscle_group: Optional[List[str]]
+    equipment: Optional[List[str]]
     type: str
 
 
-class BaseSet(BaseModel):
+class ExerciseCreate(ExerciseBase):
+    pass
+
+
+class Exercise(ExerciseBase):
+    id: int
+
+    class Config:
+        orm_mode = True
+
+
+class SetBase(BaseModel):
     exercise: str
-    weight: float | None = None
-    reps: int | None = None
-    rpe: int | None = None
-    notes: str | None = None
-    duration: int | None = None
-    distance: float | None = None
+    weight: float
+    reps: int
+    rpe: int
+    notes: str
+    duration: int
+    distance: float
 
 
-class BaseEquipment(BaseModel):
+class SetCreate(SetBase):
+    pass
+
+
+class Set(SetBase):
+    id: int
+
+    class Config:
+        orm_mode = True
+
+
+class MuscleGroupBase(BaseModel):
     name: str
-
-
-class MuscleGroup(BaseModel):
-    name: str
-    children: Optional[List["MuscleGroup"]] | None = None
+    children: Optional[List["MuscleGroup"]] = None
 
     class Config:
         arbitrary_types_allowed = True
+
+
+class MuscleGroupCreate(MuscleGroupBase):
+    pass
+
+
+class MuscleGroup(MuscleGroupBase):
+    id: int
+
+    class Config:
+        orm_mode = True
