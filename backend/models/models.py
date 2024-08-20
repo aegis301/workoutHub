@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, Table
 from sqlalchemy.orm import relationship
-from ..database import Base
+from database import Base
 
 # Association table for the many-to-many relationship
 exercise_secondary_muscle_group_association = Table(
@@ -54,6 +54,8 @@ class Equipment(Base):
 
 
 class Set(Base):
+    __tablename__ = "sets"
+
     id = Column(Integer, primary_key=True, index=True)
     exercise_id = Column(Integer, ForeignKey('exercises.id'))
     weight = Column(Integer)
@@ -63,4 +65,4 @@ class Set(Base):
     duration = Column(Integer)
     distance = Column(Integer)
     equipment = Column(Integer, ForeignKey('equipment.id'))
-    exercies = relationship("Exercise", back_populates="sets")
+    exercise = relationship("Exercise", back_populates="sets")
