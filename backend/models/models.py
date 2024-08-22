@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, Table
+from sqlalchemy import Column, Integer, String, ForeignKey, Table, DateTime, Float
 from sqlalchemy.orm import relationship
 from database import Base
 
@@ -58,11 +58,11 @@ class Set(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     exercise_id = Column(Integer, ForeignKey('exercises.id'))
-    weight = Column(Integer)
+    date = Column(DateTime)
+    weight = Column(Float)
     reps = Column(Integer)
-    rpe = Column(Integer)
-    notes = Column(String)
     duration = Column(Integer)
-    distance = Column(Integer)
-    equipment = Column(Integer, ForeignKey('equipment.id'))
+    distance = Column(Float)
+    equipment_id = Column(Integer, ForeignKey('equipment.id'))
     exercise = relationship("Exercise", back_populates="sets")
+    equipment = relationship("Equipment")

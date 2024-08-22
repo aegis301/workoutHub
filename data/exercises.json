@@ -573,7 +573,7 @@
     },
     "Lat Pulldown - Close Grip": {
         "name": "Lat Pulldown - Close Grip",
-        "primaryMuscleGroup": "Lat",
+        "primaryMuscleGroup": "Latissimus",
         "secondaryMuscleGroups": [
             "Biceps",
             "Rear Deltoids"
@@ -603,7 +603,7 @@
     },
     "Lat Push Down": {
         "name": "Lat Push Down",
-        "primaryMuscleGroup": "Lat",
+        "primaryMuscleGroup": "Latissimus",
         "secondaryMuscleGroups": [
             "Triceps"
         ],
@@ -759,7 +759,7 @@
         "name": "Pull Over",
         "primaryMuscleGroup": "Chest",
         "secondaryMuscleGroups": [
-            "Lat"
+            "Latissimus"
         ],
         "equipment": [
             "Dumbbells",
@@ -814,5 +814,19 @@
         "secondaryMuscleGroups": [],
         "equipment": [],
         "type": "Cardio"
+    },
+    "Bent Over One Arm Row": {
+        "name": "Bent over One Arm Row",
+        "primaryMuscleGroup": "Latissimus",
+        "secondaryMuscleGroups": [
+            "Biceps",
+            "Trapezius",
+            "Rear Deltoids"
+        ],
+        "equipment": [
+            "Dumbbells",
+            "Cable"
+        ],
+        "type": "Strength"
     }
-}
+    }

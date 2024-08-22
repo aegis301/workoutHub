@@ -1,6 +1,6 @@
+import os
 import pandas as pd
 import json
-import os
 import datetime
 
 
@@ -14,8 +14,7 @@ def augment_row(row, exercises):
     try:
         exercise = exercises[row['exercise']]
     except KeyError:
-        print(f"Exercise {
-              row['exercise']} not found in exercises.json, you might want to add it.")
+        print(f"Exercise {row['exercise']} not found.")
         return row
     row['primary_muscle_group'] = exercise['primaryMuscleGroup']
     row['secondary_muscle_group'] = exercise['secondaryMuscleGroups']
@@ -38,6 +37,7 @@ def filter_imports(data):
     # get the latest date
     latest_date = max(dates)
     # exclude sets that are already imported by comparing the dates
+    data['Date'] = pd.to_datetime(data['Date'])
     data = data[data['Date'] > latest_date]
     return data
 
@@ -49,8 +49,12 @@ def converter(apply_filter=False):
     if apply_filter is True:
         data = filter_imports(data)
     # split exercise name and equipment
-    data['exercise'], data['equipment'] = zip(
-        *data['Exercise Name'].map(strip_appendix))
+    try:
+        data['exercise'], data['equipment'] = zip(
+            *data['Exercise Name'].map(strip_appendix))
+    except ValueError:
+        print(data['Exercise Name'].map(strip_appendix))
+        data['exercise'] = data['Exercise Name']
     data.drop(columns=["Workout Name", "Duration"], inplace=True)
     # augment data with exercise data
     data = data.apply(augment_row, axis=1, exercises=exercises)

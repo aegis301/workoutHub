@@ -5,8 +5,8 @@ from typing import List, Optional
 class ExerciseBase(BaseModel):
     name: str
     primary_muscle_group: str
-    secondary_muscle_groups: Optional[List[str]]
-    equipment: Optional[List[str]]
+    secondary_muscle_groups: Optional[List[str]] = None
+    equipment: Optional[List[str]] = None
     type: str
 
 
@@ -23,6 +23,7 @@ class Exercise(ExerciseBase):
 
 class SetBase(BaseModel):
     exercise: str
+    date: str
     weight: float
     reps: int
     rpe: int
