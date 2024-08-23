@@ -1,8 +1,9 @@
-from pydantic import BaseModel
+"""This module contains the Pydantic models for the database tables."""
 from typing import List, Optional
+from sqlmodel import Field, SQLModel
 
 
-class ExerciseBase(BaseModel):
+class ExerciseBase(SQLModel):
     name: str
     primary_muscle_group: str
     secondary_muscle_groups: Optional[List[str]] = None
@@ -21,7 +22,7 @@ class Exercise(ExerciseBase):
         orm_mode = True
 
 
-class SetBase(BaseModel):
+class SetBase(SQLModel):
     exercise: str
     date: str
     weight: float
@@ -43,7 +44,7 @@ class Set(SetBase):
         orm_mode = True
 
 
-class MuscleGroupBase(BaseModel):
+class MuscleGroupBase(SQLModel):
     name: str
     children: Optional[List["MuscleGroup"]] = None
 
