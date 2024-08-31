@@ -1,68 +1,89 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, Table, DateTime, Float
+"""This module contains the Pydantic models for the database tables."""
+from typing import Optional, List
+from sqlmodel import Field, SQLModel, Relationship
 from sqlalchemy.orm import relationship
-from database import Base
-
-# Association table for the many-to-many relationship
-exercise_secondary_muscle_group_association = Table(
-    'exercise_secondary_muscle_group', Base.metadata,
-    Column('exercise_id', Integer, ForeignKey('exercises.id')),
-    Column('muscle_group_id', Integer, ForeignKey('muscle_groups.id'))
-)
+from sqlalchemy import ForeignKey
 
 
-class Exercise(Base):
-    __tablename__ = "exercises"
+class Equipment(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    name: str = Field(max_length=100, unique=True)
 
-    id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, unique=True, index=True)
-    type = Column(String)
-    primary_muscle_group_id = Column(Integer, ForeignKey('muscle_groups.id'))
+    class Config:
+        from_attributes = True
+        arbitrary_types_allowed = True
 
-    # Define the relationship to the primary MuscleGroup class
-    primary_muscle_group = relationship(
-        "MuscleGroup", foreign_keys=[primary_muscle_group_id])
 
-    # Define the relationship to the secondary MuscleGroup class
-    secondary_muscle_groups = relationship(
-        "MuscleGroup",
-        secondary=exercise_secondary_muscle_group_association,
-        back_populates="exercises"
+class MuscleGroup(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    name: str = Field(max_length=100, unique=True)
+    parent_id: Optional[int] = Field(default=None, foreign_key="musclegroup.id")
+    children: List["MuscleGroup"] = Relationship(
+        sa_relationship=relationship("MuscleGroup", back_populates="parent", remote_side="[MuscleGroup.id]")
     )
-    sets = relationship("Set", back_populates="exercise")
-
-
-class MuscleGroup(Base):
-    __tablename__ = "muscle_groups"
-
-    id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, unique=True, index=True)
-    parent_id = Column(Integer, ForeignKey("muscle_groups.id"))
-
-    # Define the relationship to the Exercise class
-    exercises = relationship(
-        "Exercise",
-        secondary=exercise_secondary_muscle_group_association,
-        back_populates="secondary_muscle_groups"
+    parent: Optional["MuscleGroup"] = Relationship(
+        sa_relationship=relationship("MuscleGroup", back_populates="children")
     )
 
+    class Config:
+        from_attributes = True
+        arbitrary_types_allowed = True
 
-class Equipment(Base):
-    __tablename__ = "equipment"
+# class ExerciseBase(SQLModel):
+#     name: str
+#     primary_muscle_group: str
+#     secondary_muscle_groups: Optional[List[str]] = None
+#     equipment: Optional[List[str]] = None
+#     type: str
 
-    id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, unique=True, index=True)
+
+# class ExerciseCreate(ExerciseBase):
+#     pass
 
 
-class Set(Base):
-    __tablename__ = "sets"
+# class Exercise(ExerciseBase):
+#     id: int
 
-    id = Column(Integer, primary_key=True, index=True)
-    exercise_id = Column(Integer, ForeignKey('exercises.id'))
-    date = Column(DateTime)
-    weight = Column(Float)
-    reps = Column(Integer)
-    duration = Column(Integer)
-    distance = Column(Float)
-    equipment_id = Column(Integer, ForeignKey('equipment.id'))
-    exercise = relationship("Exercise", back_populates="sets")
-    equipment = relationship("Equipment")
+#     class Config:
+#         orm_mode = True
+
+
+# class SetBase(SQLModel):
+#     exercise: str
+#     date: str
+#     weight: float
+#     # reps: int
+#     rpe: int
+#     notes: str
+#     duration: int
+#     distance: float
+
+
+# class SetCreate(SetBase):
+#     pass
+
+
+# class Set(SetBase):
+#     id: int
+
+#     class Config:
+#         orm_mode = True
+
+
+# class MuscleGroupBase(SQLModel):
+#     name: str
+#     children: Optional[List["MuscleGroup"]] = None
+
+#     class Config:
+#         arbitrary_types_allowed = True
+
+
+# class MuscleGroupCreate(MuscleGroupBase):
+#     pass
+
+
+# class MuscleGroup(MuscleGroupBase):
+#     id: int
+
+#     class Config:
+#         orm_mode = True
