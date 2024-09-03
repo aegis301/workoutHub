@@ -6,7 +6,7 @@ import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from sqlmodel import Session, select
-from models.models import Equipment
+from models.models import Equipment, MuscleGroup
 from logger.logger import Logger
 import json
 import requests
@@ -39,29 +39,35 @@ def create_equipment(db: Session):
 
 def create_muscle_groups(db: Session):
     def add_muscle_group(name, parent_id=None):
-        db_muscle_group = {
-            "name": name,
-            "parent_id": parent_id
-        }
-        response = requests.post(
-            f"{SERVER_URL}/muscle-groups/", json=db_muscle_group)
-        db_muscle_group = response.json()
-        print(db_muscle_group)
-        logger.info(f"Added muscle group: {name}")
+        db_muscle_group = MuscleGroup(name=name, parent_id=parent_id)
+        try:
+            response = requests.post(
+                f"{SERVER_URL}/muscle-groups/", json=db_muscle_group.model_dump())
+            response.raise_for_status()
+            logger.info(f"Added muscle group: {name}")
+            logger.info(response.json())
+        except Exception as e:
+            logger.error(f"Error adding muscle group {name}: {e}")
 
     def process_muscle_groups(muscle_groups, parent_id=None):
         for name, subgroups in muscle_groups.items():
-            add_muscle_group(name, parent_id)
-            if subgroups is not None:
+            if len(subgroups) == 0:
+                statement = select(MuscleGroup).where(MuscleGroup.name == name)
+                existing_muscle_group = db.exec(statement).first()
+                if existing_muscle_group:
+                    logger.debug(f"Muscle group {name} already exists with id {existing_muscle_group.id}")
+                    continue
+                else:
+                    add_muscle_group(name, parent_id)
+            else:
                 process_muscle_groups(subgroups, parent_id)
     current_dir = os.getcwd()
     muscle_groups_file_path = os.path.join(
         current_dir, 'data', 'muscle-groups.json')
     with open(muscle_groups_file_path) as f:
         muscle_groups = json.load(f)
-
-    # Process muscle groups
-    process_muscle_groups(muscle_groups)
+        # Process muscle groups
+        process_muscle_groups(muscle_groups)
 # def create_muscle_groups(db: Session):
 #     def add_muscle_group(name, parent_id=None):
 #         existing_muscle_group = db.query(
