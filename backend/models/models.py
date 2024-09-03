@@ -15,7 +15,7 @@ class Equipment(SQLModel, table=True):
 
 
 class MuscleGroup(SQLModel, table=True):
-    id: Optional[int] = Field(default=None, primary_key=True)
+    id: int | None = Field(default=None, primary_key=True)
     name: str = Field(max_length=100, unique=True)
     parent_id: Optional[int] = Field(default=None, foreign_key="musclegroup.id")
     children: List["MuscleGroup"] = Relationship(

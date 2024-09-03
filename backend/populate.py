@@ -48,12 +48,11 @@ def create_muscle_groups(db: Session):
         db_muscle_group = response.json()
         print(db_muscle_group)
         logger.info(f"Added muscle group: {name}")
-        return db_muscle_group['id']
 
     def process_muscle_groups(muscle_groups, parent_id=None):
         for name, subgroups in muscle_groups.items():
-            muscle_group_id = add_muscle_group(name, parent_id)
-            if subgroups:
+            add_muscle_group(name, parent_id)
+            if subgroups is not None:
                 process_muscle_groups(subgroups, parent_id)
     current_dir = os.getcwd()
     muscle_roups_file_path = os.path.join(
