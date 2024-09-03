@@ -44,21 +44,16 @@ def create_muscle_groups(db: Session):
             "parent_id": parent_id
         }
         response = requests.post(
-            f"{SERVER_URL}/muscle_groups/", json=db_muscle_group)
-        if response.status_code == 201:
-            db_muscle_group = response.json()
-            logger.info(f"Added muscle group: {name}")
-            return db_muscle_group['id']
-        else:
-            logger.error(f"Failed to add muscle group: {name}, Status Code: {response.status_code}")
-            return None
+            f"{SERVER_URL}/muscle-groups/", json=db_muscle_group)
+        db_muscle_group = response.json()
+        print(db_muscle_group)
+        logger.info(f"Added muscle group: {name}")
 
     def process_muscle_groups(muscle_groups, parent_id=None):
         for name, subgroups in muscle_groups.items():
-            muscle_group_id = add_muscle_group(name, parent_id)
-            if subgroups and muscle_group_id:
-                process_muscle_groups(subgroups, muscle_group_id)
-
+            add_muscle_group(name, parent_id)
+            if subgroups is not None:
+                process_muscle_groups(subgroups, parent_id)
     current_dir = os.getcwd()
     muscle_groups_file_path = os.path.join(
         current_dir, 'data', 'muscle-groups.json')
