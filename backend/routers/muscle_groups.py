@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends
-from sqlmodel import Session
+from sqlmodel import Session, select
 from models.models import MuscleGroup
 from database import get_session
 
@@ -11,13 +11,14 @@ router = APIRouter(
 
 @router.get("/")
 def get_muscle_groups(db: Session = Depends(get_session)):
-    muscle_groups = db.exec(MuscleGroup).all()
+    statement = select(MuscleGroup)
+    muscle_groups = db.exec(statement).all()
     return muscle_groups
 
 
 @router.get("/{muscle_group_id}")
 def get_muscle_group(muscle_group_id: int, db: Session = Depends(get_session)):
-    muscle_group = db.exec(MuscleGroup).get(muscle_group_id)
+    muscle_group = db.get(MuscleGroup, muscle_group_id)
     return muscle_group
 
 
