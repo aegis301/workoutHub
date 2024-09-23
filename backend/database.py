@@ -17,10 +17,10 @@ Base = declarative_base()
 @asynccontextmanager
 async def create_database(app: FastAPI):
     SQLModel.metadata.create_all(engine)
-    try:
-        yield
-    finally:
-        SQLModel.metadata.drop_all(engine)
+    # try:
+    yield
+    # finally:
+    #     SQLModel.metadata.drop_all(engine)
 
 
 def get_session():

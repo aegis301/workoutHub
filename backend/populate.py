@@ -45,80 +45,25 @@ def create_muscle_groups(db: Session):
                 f"{SERVER_URL}/muscle-groups/", json=db_muscle_group.model_dump())
             response.raise_for_status()
             logger.info(f"Added muscle group: {name}")
-            logger.info(response.json())
+            return response.json().get('id')
         except Exception as e:
             logger.error(f"Error adding muscle group {name}: {e}")
+            return None
 
     def process_muscle_groups(muscle_groups, parent_id=None):
         for name, subgroups in muscle_groups.items():
-            if len(subgroups) == 0:
-                statement = select(MuscleGroup).where(MuscleGroup.name == name)
-                existing_muscle_group = db.exec(statement).first()
-                if existing_muscle_group:
-                    logger.debug(f"Muscle group {name} already exists with id {existing_muscle_group.id}")
-                    continue
-                else:
-                    add_muscle_group(name, parent_id)
-            else:
-                process_muscle_groups(subgroups, parent_id)
+            muscle_group_id = add_muscle_group(name, parent_id)
+            if subgroups and muscle_group_id:
+                process_muscle_groups(subgroups, muscle_group_id)
+
     current_dir = os.getcwd()
     muscle_groups_file_path = os.path.join(
         current_dir, 'data', 'muscle-groups.json')
     with open(muscle_groups_file_path) as f:
         muscle_groups = json.load(f)
-        # Process muscle groups
-        process_muscle_groups(muscle_groups)
-# def create_muscle_groups(db: Session):
-#     def add_muscle_group(name, parent_id=None):
-#         existing_muscle_group = db.query(
-#             models_depr.MuscleGroup).filter_by(name=name).first()
-#         if existing_muscle_group:
-#             logger.debug(f"Muscle group {name} already exists with id {
-#                 existing_muscle_group.id}")
-#             return existing_muscle_group.id
-#         db_muscle_group = models_depr.MuscleGroup(name=name, parent_id=parent_id)
-#         db.add(db_muscle_group)
-#         logger.info(f"Added muscle group: {name}")
-#         db.commit()
-#         return db_muscle_group.id
 
-#     def process_muscle_groups(muscle_groups, parent_id=None):
-#         for name, subgroups in muscle_groups.items():
-#             muscle_group_id = add_muscle_group(name, parent_id)
-#             if subgroups:
-#                 process_muscle_groups(subgroups, muscle_group_id)
-
-#     current_dir = os.getcwd()
-#     muscle_roups_file_path = os.path.join(
-#         current_dir, 'data', 'muscle-groups.json')
-#     with open(muscle_roups_file_path) as f:
-#         muscle_groups = json.load(f)
-
-#     # Process muscle groups
-#     process_muscle_groups(muscle_groups)
-
-
-# def create_equipment(db: Session):
-#     # Create equipment
-#     current_dir = os.getcwd()
-#     equipment_file_path = os.path.join(
-#         current_dir, 'data', 'equipment.json')
-#     with open(equipment_file_path) as f:
-#         equipment = json.load(f)
-#     for equipment_name in equipment:
-#         existing_equipment = db.query(models_depr.Equipment).filter_by(
-#             name=equipment_name).first()
-#         if existing_equipment:
-#             logger.debug(f"Equipment {equipment_name} already exists.")
-#             continue
-#         db_equipment = models_depr.Equipment(name=equipment_name)
-#         try:
-#             db.add(db_equipment)
-#             logger.info(f"Added equipment: {equipment_name}")
-#         except Exception as e:
-#             logger.error(f"Error adding equipment {equipment_name}: {e}")
-#         db.commit()
-
+    # Process muscle groups
+    process_muscle_groups(muscle_groups)
 
 # def create_exercises(db: Session):
 #     # Create exercises
