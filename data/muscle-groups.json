@@ -1,48 +1,50 @@
 {
-    "Upper Body": {
-        "Arms": {
-            "Biceps": {},
-            "Triceps": {},
-            "Forearms": {}
-        },
-        "Shoulders": {
-            "Front Deltoids": {},
-            "Side Deltoids": {},
-            "Rear Deltoids": {}
-        },
-        "Back": {
-            "Upper Back": {
-                "Trapezius": {},
-                "Rhomboids": {}
+    "Whole Body": {
+        "Upper Body": {
+            "Arms": {
+                "Biceps": {},
+                "Triceps": {},
+                "Forearms": {}
             },
-            "Lower Back": {
-                "Erector Spinae": {}
+            "Shoulders": {
+                "Front Deltoids": {},
+                "Side Deltoids": {},
+                "Rear Deltoids": {}
             },
-            "Latissimus": {}
-        },
-        "Chest": {
-            "Upper Chest": {},
-            "Lower Chest": {}
-        }
-    },
-    "Lower Body": {
-        "Legs": {
-            "Upper Legs": {
-                "Quadriceps": {},
-                "Hamstrings": {},
-                "Glutes": {},
-                "Hip Flexors": {},
-                "Adductors": {},
-                "Abductors": {}
+            "Back": {
+                "Upper Back": {
+                    "Trapezius": {},
+                    "Rhomboids": {}
+                },
+                "Lower Back": {
+                    "Erector Spinae": {}
+                },
+                "Latissimus": {}
             },
-            "Lower Legs": {
-                "Calves": {}
+            "Chest": {
+                "Upper Chest": {},
+                "Lower Chest": {}
             }
+        },
+        "Lower Body": {
+            "Legs": {
+                "Upper Legs": {
+                    "Quadriceps": {},
+                    "Hamstrings": {},
+                    "Glutes": {},
+                    "Hip Flexors": {},
+                    "Adductors": {},
+                    "Abductors": {}
+                },
+                "Lower Legs": {
+                    "Calves": {}
+                }
+            }
+        },
+        "Abs": {
+            "Rectus Abdominis": {},
+            "Obliques": {},
+            "Transverse Abdominis": {}
         }
-    },
-    "Abs": {
-        "Rectus Abdominis": {},
-        "Obliques": {},
-        "Transverse Abdominis": {}
     }
 }

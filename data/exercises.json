@@ -8,7 +8,7 @@
         ],
         "equipment": [
             "Barbell",
-            "Dumbells",
+            "Dumbell",
             "Smith Machine"
         ],
         "type": "Strength"
@@ -22,7 +22,7 @@
         ],
         "equipment": [
             "Barbell",
-            "Dumbells",
+            "Dumbell",
             "Smith Machine"
         ],
         "type": "Strength"
@@ -37,7 +37,7 @@
         ],
         "equipment": [
             "Barbell",
-            "Dumbells",
+            "Dumbell",
             "Smith Machine"
         ],
         "type": "Strength"
@@ -51,8 +51,8 @@
             "Calves"
         ],
         "equipment": [
-            "Body Weight",
-            "Dumbells",
+            "Bodyweight",
+            "Dumbell",
             "Barbell",
             "Smith Machine"
         ],
@@ -63,7 +63,7 @@
         "primaryMuscleGroup": "Biceps",
         "secondaryMuscleGroups": [],
         "equipment": [
-            "Dumbells",
+            "Dumbell",
             "Barbell",
             "Cable"
         ],
@@ -78,7 +78,7 @@
             "Trapezius"
         ],
         "equipment": [
-            "Body Weight",
+            "Bodyweight",
             "Assisted"
         ],
         "type": "Strength"
@@ -99,7 +99,7 @@
         ],
         "equipment": [
             "Barbell",
-            "Dumbells",
+            "Dumbell",
             "Cable",
             "Kettlebell"
         ],
@@ -113,7 +113,7 @@
             "Rear Deltoids"
         ],
         "equipment": [
-            "Dumbells",
+            "Dumbell",
             "Cable"
         ],
         "type": "Strength"
@@ -144,7 +144,7 @@
         ],
         "equipment": [
             "Barbell",
-            "Dumbells",
+            "Dumbell",
             "Smith Machine"
         ],
         "type": "Strength"
@@ -157,7 +157,7 @@
             "Front Deltoids"
         ],
         "equipment": [
-            "Body Weight"
+            "Bodyweight"
         ],
         "type": "Strength"
     },
@@ -166,7 +166,7 @@
         "primaryMuscleGroup": "Triceps",
         "secondaryMuscleGroups": [],
         "equipment": [
-            "Dumbbells",
+            "Dumbell",
             "Barbell",
             "Cable",
             "Machine"
@@ -181,8 +181,8 @@
             "Hamstrings"
         ],
         "equipment": [
-            "Body Weight",
-            "Dumbbells",
+            "Bodyweight",
+            "Dumbell",
             "Barbell",
             "Smith Machine"
         ],
@@ -197,7 +197,7 @@
         ],
         "equipment": [
             "Barbell",
-            "Dumbbells"
+            "Dumbell"
         ],
         "type": "Strength"
     },
@@ -208,7 +208,7 @@
             "Obliques"
         ],
         "equipment": [
-            "Body Weight",
+            "Bodyweight",
             "Plate",
             "Medicine Ball"
         ],
@@ -221,7 +221,7 @@
             "Hip Flexors"
         ],
         "equipment": [
-            "Body Weight"
+            "Bodyweight"
         ],
         "type": "Strength"
     },
@@ -233,7 +233,7 @@
             "Rhomboids"
         ],
         "equipment": [
-            "Dumbbells",
+            "Dumbell",
             "Machine",
             "Cable"
         ],
@@ -247,7 +247,7 @@
             "Front Deltoids"
         ],
         "equipment": [
-            "Body Weight",
+            "Bodyweight",
             "Assisted"
         ],
         "type": "Strength"
@@ -260,7 +260,7 @@
             "Rear Deltoids"
         ],
         "equipment": [
-            "Body Weight",
+            "Bodyweight",
             "TRX"
         ],
         "type": "Strength"
@@ -283,7 +283,7 @@
         "secondaryMuscleGroups": [],
         "equipment": [
             "Barbell",
-            "Dumbbells",
+            "Dumbell",
             "Smith Machine",
             "Machine"
         ],
@@ -304,7 +304,7 @@
         ],
         "equipment": [
             "Barbell",
-            "Dumbbells",
+            "Dumbell",
             "Cable",
             "Smith Machine"
         ],
@@ -318,7 +318,7 @@
             "Shoulders"
         ],
         "equipment": [
-            "Body Weight"
+            "Bodyweight"
         ],
         "type": "Strength"
     },
@@ -336,7 +336,7 @@
             "Triceps"
         ],
         "equipment": [
-            "Dumbbells",
+            "Dumbell",
             "Barbell",
             "Smith Machine",
             "Cable"
@@ -350,7 +350,7 @@
             "Front Deltoids"
         ],
         "equipment": [
-            "Dumbbells",
+            "Dumbell",
             "Cable"
         ],
         "type": "Strength"
@@ -363,7 +363,7 @@
             "Lower Back"
         ],
         "equipment": [
-            "Dumbbells"
+            "Dumbell"
         ],
         "type": "Strength"
     },
@@ -372,8 +372,8 @@
         "primaryMuscleGroup": "Calves",
         "secondaryMuscleGroups": [],
         "equipment": [
-            "Body Weight",
-            "Dumbbells"
+            "Bodyweight",
+            "Dumbell"
         ],
         "type": "Strength"
     },
@@ -515,7 +515,7 @@
         "primaryMuscleGroup": "Abs",
         "secondaryMuscleGroups": [],
         "equipment": [
-            "Body Weight"
+            "Bodyweight"
         ],
         "type": "Strength"
     },
@@ -533,7 +533,7 @@
         "primaryMuscleGroup": "Abs",
         "secondaryMuscleGroups": [],
         "equipment": [
-            "Body Weight"
+            "Bodyweight"
         ],
         "type": "Strength"
     },
@@ -617,7 +617,7 @@
         "primaryMuscleGroup": "Abs",
         "secondaryMuscleGroups": [],
         "equipment": [
-            "Body Weight"
+            "Bodyweight"
         ],
         "type": "Strength"
     },
@@ -692,7 +692,7 @@
         "primaryMuscleGroup": "Abs",
         "secondaryMuscleGroups": [],
         "equipment": [
-            "Body Weight"
+            "Bodyweight"
         ],
         "type": "Strength"
     },
@@ -739,7 +739,7 @@
             "Hamstrings"
         ],
         "equipment": [
-            "Body Weight"
+            "Bodyweight"
         ],
         "type": "Strength"
     },
@@ -762,7 +762,7 @@
             "Latissimus"
         ],
         "equipment": [
-            "Dumbbells",
+            "Dumbell",
             "Cable"
         ],
         "type": "Strength"
@@ -773,7 +773,7 @@
         "secondaryMuscleGroups": [],
         "equipment": [
             "Barbell",
-            "Dumbbells",
+            "Dumbell",
             "Cable"
         ],
         "type": "Strength"
@@ -824,7 +824,7 @@
             "Rear Deltoids"
         ],
         "equipment": [
-            "Dumbbells",
+            "Dumbell",
             "Cable"
         ],
         "type": "Strength"
