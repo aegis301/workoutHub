@@ -20,6 +20,7 @@ class Equipment(SQLModel, table=True):
 
     # SQLModel handles relationships natively with `Relationship`
     exercises: List["Exercise"] = Relationship(back_populates="equipment", link_model=ExerciseEquipmentLink)
+    sets: List["Set"] = Relationship(back_populates="equipment")
 
 
 class MuscleGroup(SQLModel, table=True):
@@ -54,15 +55,21 @@ class Exercise(SQLModel, table=True):
     primary_muscle_group: MuscleGroup = Relationship(back_populates="primary_exercises")
     secondary_muscle_groups: List["MuscleGroup"] = Relationship(back_populates="secondary_exercises", link_model=ExerciseMuscleGroupLink)
     equipment: List["Equipment"] = Relationship(back_populates="exercises", link_model=ExerciseEquipmentLink)
+    sets: List["Set"] = Relationship(back_populates="exercise")
 
 
-# Example of how you'd define additional models, keeping to the SQLModel structure
-# class Set(SQLModel, table=True):
-#     id: Optional[int] = Field(default=None, primary_key=True)
-#     exercise: str
-#     date: str
-#     weight: float
-#     rpe: int
-#     notes: str
-#     duration: int
-#     distance: float
+class Set(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    exercise_id: int = Field(foreign_key="exercise.id")
+    equipment_id: Optional[int] = Field(default=None, foreign_key="equipment.id")
+    date: str
+    weight: float
+    reps: int
+    rpe: int
+    notes: str
+    duration: int
+    distance: float
+
+    # Relationship to Exercise
+    exercise: Exercise = Relationship(back_populates="sets")
+    equipment: Equipment = Relationship(back_populates="sets")

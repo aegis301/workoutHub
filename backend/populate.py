@@ -1,10 +1,9 @@
 """Used to populate the database with dummy data for testing purposes."""
-import sys
 import os
 import json
-import requests
+import csv
 from sqlmodel import Session, select
-from models.models import Equipment, MuscleGroup, Exercise, ExerciseMuscleGroupLink
+from models.models import Equipment, MuscleGroup, Exercise, Set
 from logger.logger import Logger
 
 logger = Logger(__name__)
@@ -18,14 +17,14 @@ def create_equipment(db: Session):
     equipment_file_path = os.path.join(current_dir, 'data', 'equipment.json')
     with open(equipment_file_path) as f:
         equipment = json.load(f)
-    
+
     for equipment_name in equipment:
         statement = select(Equipment).where(Equipment.name == equipment_name)
         existing_equipment = db.exec(statement).first()
         if existing_equipment:
             logger.debug(f"Equipment {equipment_name} already exists.")
             continue
-        
+
         db_equipment = Equipment(name=equipment_name)
         db.add(db_equipment)
         db.commit()
@@ -102,6 +101,36 @@ def create_exercises(db: Session):
         logger.info(f"Added exercise: {exercise_data['name']}")
 
 
+def create_sets(db: Session):
+    """Create sets from a JSON file."""
+    current_dir = os.getcwd()
+    sets_file_path = os.path.join(current_dir, 'data', 'strong-2024-08-22.csv')
+    with open(sets_file_path) as f:
+        sets = csv.DictReader(f)
+
+        for set_data in sets:
+            statement = select(Exercise).where(Exercise.name == set_data['exercise'])
+            exercise = db.exec(statement).first()
+
+            statement = select(Equipment).where(Equipment.name == set_data['equipment'])
+            equipment = db.exec(statement).first()
+
+            db_set = Set(
+                exercise=exercise,
+                date=set_data['Date'],
+                weight=float(set_data['Weight']),
+                reps=int(set_data['Reps']),
+                notes=set_data['Notes'],
+                duration=int(set_data['Seconds']),
+                distance=float(set_data['Distance']),
+                equipment=equipment
+            )
+
+        db.add(db_set)
+        db.commit()
+        logger.info(f"Added set for exercise ID {set_data['exercise_id']}")
+
+
 if __name__ == '__main__':
     from database import get_session
 
@@ -109,5 +138,6 @@ if __name__ == '__main__':
         create_equipment(db)
         create_muscle_groups(db)
         create_exercises(db)
-
+        create_sets(db)
+        
     db.close()
