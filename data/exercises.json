@@ -585,7 +585,7 @@
     },
     "Shoulder External Rotation": {
         "name": "Shoulder External Rotation",
-        "primaryMuscleGroup": "Rotator Cuff",
+        "primaryMuscleGroup": "Rear Deltoids",
         "secondaryMuscleGroups": [],
         "equipment": [
             "Cable"
