@@ -1,68 +1,75 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, Table, DateTime, Float
-from sqlalchemy.orm import relationship
-from database import Base
-
-# Association table for the many-to-many relationship
-exercise_secondary_muscle_group_association = Table(
-    'exercise_secondary_muscle_group', Base.metadata,
-    Column('exercise_id', Integer, ForeignKey('exercises.id')),
-    Column('muscle_group_id', Integer, ForeignKey('muscle_groups.id'))
-)
+from typing import Optional, List
+from sqlmodel import Field, SQLModel, Relationship
+from enum import Enum
 
 
-class Exercise(Base):
-    __tablename__ = "exercises"
+# This linking model is needed for many-to-many relationship between Exercise and MuscleGroup.
+class ExerciseMuscleGroupLink(SQLModel, table=True):
+    exercise_id: Optional[int] = Field(default=None, foreign_key="exercise.id", primary_key=True)
+    muscle_group_id: Optional[int] = Field(default=None, foreign_key="musclegroup.id", primary_key=True)
 
-    id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, unique=True, index=True)
-    type = Column(String)
-    primary_muscle_group_id = Column(Integer, ForeignKey('muscle_groups.id'))
 
-    # Define the relationship to the primary MuscleGroup class
-    primary_muscle_group = relationship(
-        "MuscleGroup", foreign_keys=[primary_muscle_group_id])
+class ExerciseEquipmentLink(SQLModel, table=True):
+    exercise_id: Optional[int] = Field(default=None, foreign_key="exercise.id", primary_key=True)
+    equipment_id: Optional[int] = Field(default=None, foreign_key="equipment.id", primary_key=True)
 
-    # Define the relationship to the secondary MuscleGroup class
-    secondary_muscle_groups = relationship(
-        "MuscleGroup",
-        secondary=exercise_secondary_muscle_group_association,
-        back_populates="exercises"
+
+class Equipment(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    name: str = Field(max_length=100, unique=True)
+
+    # SQLModel handles relationships natively with `Relationship`
+    exercises: List["Exercise"] = Relationship(back_populates="equipment", link_model=ExerciseEquipmentLink)
+    sets: List["Set"] = Relationship(back_populates="equipment")
+
+
+class MuscleGroup(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    name: str = Field(max_length=100, unique=True)
+    parent_id: Optional[int] = Field(default=None, foreign_key="musclegroup.id")
+
+    # Self-referential relationship for parent-child muscle groups
+    children: List["MuscleGroup"] = Relationship(
+        back_populates="parent",
+        sa_relationship_kwargs={"remote_side": "MuscleGroup.id"}  # SQLModel handles this automatically
     )
-    sets = relationship("Set", back_populates="exercise")
+    parent: Optional["MuscleGroup"] = Relationship(back_populates="children")
+
+    primary_exercises: List["Exercise"] = Relationship(back_populates="primary_muscle_group")
+    secondary_exercises: List["Exercise"] = Relationship(back_populates="secondary_muscle_groups", link_model=ExerciseMuscleGroupLink)
 
 
-class MuscleGroup(Base):
-    __tablename__ = "muscle_groups"
-
-    id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, unique=True, index=True)
-    parent_id = Column(Integer, ForeignKey("muscle_groups.id"))
-
-    # Define the relationship to the Exercise class
-    exercises = relationship(
-        "Exercise",
-        secondary=exercise_secondary_muscle_group_association,
-        back_populates="secondary_muscle_groups"
-    )
+class ExerciseType(str, Enum):
+    STRENGTH = "strength"
+    CARDIO = "cardio"
+    FLEXIBILITY = "flexibility"
 
 
-class Equipment(Base):
-    __tablename__ = "equipment"
+class Exercise(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    name: str
+    type: str
+    primary_muscle_group_id: Optional[int] = Field(default=None, foreign_key="musclegroup.id")
 
-    id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, unique=True, index=True)
+    # Relationships to MuscleGroup and Equipment
+    primary_muscle_group: MuscleGroup = Relationship(back_populates="primary_exercises")
+    secondary_muscle_groups: List["MuscleGroup"] = Relationship(back_populates="secondary_exercises", link_model=ExerciseMuscleGroupLink)
+    equipment: List["Equipment"] = Relationship(back_populates="exercises", link_model=ExerciseEquipmentLink)
+    sets: List["Set"] = Relationship(back_populates="exercise")
 
 
-class Set(Base):
-    __tablename__ = "sets"
+class Set(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    exercise_id: int = Field(foreign_key="exercise.id")
+    equipment_id: Optional[int] = Field(default=None, foreign_key="equipment.id")
+    date: str
+    weight: Optional[float]
+    reps: Optional[int]
+    rpe: Optional[int]
+    notes: Optional[str]
+    duration: Optional[int]
+    distance: Optional[float]
 
-    id = Column(Integer, primary_key=True, index=True)
-    exercise_id = Column(Integer, ForeignKey('exercises.id'))
-    date = Column(DateTime)
-    weight = Column(Float)
-    reps = Column(Integer)
-    duration = Column(Integer)
-    distance = Column(Float)
-    equipment_id = Column(Integer, ForeignKey('equipment.id'))
-    exercise = relationship("Exercise", back_populates="sets")
-    equipment = relationship("Equipment")
+    # Relationship to Exercise
+    exercise: Exercise = Relationship(back_populates="sets")
+    equipment: Equipment = Relationship(back_populates="sets")

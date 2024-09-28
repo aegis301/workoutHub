@@ -1,156 +1,148 @@
 """Used to populate the database with dummy data for testing purposes."""
-import sys
 import os
-
-# Add the root directory to the PYTHONPATH
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-from sqlalchemy.orm import Session
-from models import models
-from logger.logger import Logger
-from converter import strong_csv
-import pandas as pd
 import json
+import csv
+import sqlalchemy
+from sqlmodel import Session, select
+from models.models import Equipment, MuscleGroup, Exercise, Set
+from logger.logger import Logger
 
 logger = Logger(__name__)
 
-def create_muscle_groups(db: Session):
-    def add_muscle_group(name, parent_id=None):
-        existing_muscle_group = db.query(
-            models.MuscleGroup).filter_by(name=name).first()
-        if existing_muscle_group:
-            logger.debug(f"Muscle group {name} already exists with id {
-                existing_muscle_group.id}")
-            return existing_muscle_group.id
-        db_muscle_group = models.MuscleGroup(name=name, parent_id=parent_id)
-        db.add(db_muscle_group)
-        logger.info(f"Added muscle group: {name}")
+SERVER_URL = "http://localhost:8000"
+
+
+def create_equipment(db: Session):
+    """Create equipment from a JSON file."""
+    current_dir = os.getcwd()
+    equipment_file_path = os.path.join(current_dir, 'data', 'equipment.json')
+    with open(equipment_file_path) as f:
+        equipment = json.load(f)
+
+    for equipment_name in equipment:
+        statement = select(Equipment).where(Equipment.name == equipment_name)
+        existing_equipment = db.exec(statement).first()
+        if existing_equipment:
+            logger.debug(f"Equipment {equipment_name} already exists.")
+            continue
+
+        db_equipment = Equipment(name=equipment_name)
+        db.add(db_equipment)
         db.commit()
+        logger.info(f"Added equipment: {equipment_name}")
+
+
+def create_muscle_groups(db: Session):
+    """Create muscle groups from a nested JSON structure."""
+    def add_muscle_group(name, parent_id=None):
+        db_muscle_group = MuscleGroup(name=name, parent_id=parent_id)
+        db.add(db_muscle_group)
+        db.commit()
+        logger.info(f"Added muscle group: {name}")
         return db_muscle_group.id
 
     def process_muscle_groups(muscle_groups, parent_id=None):
         for name, subgroups in muscle_groups.items():
-            muscle_group_id = add_muscle_group(name, parent_id)
-            if subgroups:
+            # Check if muscle group already exists
+            statement = select(MuscleGroup).where(MuscleGroup.name == name)
+            existing_muscle_group = db.exec(statement).first()
+            if existing_muscle_group:
+                logger.debug(f"Muscle group {name} already exists.")
+                muscle_group_id = existing_muscle_group.id
+            else:
+                muscle_group_id = add_muscle_group(name, parent_id)
+            if subgroups and muscle_group_id:
                 process_muscle_groups(subgroups, muscle_group_id)
 
     current_dir = os.getcwd()
-    muscle_roups_file_path = os.path.join(
-        current_dir, 'data', 'muscle-groups.json')
-    with open(muscle_roups_file_path) as f:
+    muscle_groups_file_path = os.path.join(current_dir, 'data', 'muscle-groups.json')
+    with open(muscle_groups_file_path) as f:
         muscle_groups = json.load(f)
 
     # Process muscle groups
     process_muscle_groups(muscle_groups)
 
 
-def create_equipment(db: Session):
-    # Create equipment
-    current_dir = os.getcwd()
-    equipment_file_path = os.path.join(
-        current_dir, 'data', 'equipment.json')
-    with open(equipment_file_path) as f:
-        equipment = json.load(f)
-    for equipment_name in equipment:
-        existing_equipment = db.query(models.Equipment).filter_by(
-            name=equipment_name).first()
-        if existing_equipment:
-            logger.debug(f"Equipment {equipment_name} already exists.")
-            continue
-        db_equipment = models.Equipment(name=equipment_name)
-        try:
-            db.add(db_equipment)
-            logger.info(f"Added equipment: {equipment_name}")
-        except Exception as e:
-            logger.error(f"Error adding equipment {equipment_name}: {e}")
-        db.commit()
-
-
 def create_exercises(db: Session):
-    # Create exercises
+    """Create exercises from a JSON file."""
     current_dir = os.getcwd()
-    exercises_file_path = os.path.join(
-        current_dir, 'data', 'exercises.json')
+    exercises_file_path = os.path.join(current_dir, 'data', 'exercises.json')
     with open(exercises_file_path) as f:
         exercises = json.load(f)
+
     for exercise_name, exercise_data in exercises.items():
-        exercise = db.query(models.Exercise).filter(
-            models.Exercise.name == exercise_data['name']).first()
-        if exercise:
+        statement = select(Exercise).where(Exercise.name == exercise_name)
+        existing_exercise = db.exec(statement).first()
+        if existing_exercise:
             logger.debug(f"Exercise {exercise_data['name']} already exists.")
             continue
-        primary_muscle_group_db = db.query(models.MuscleGroup).filter(
-            models.MuscleGroup.name == exercise_data['primaryMuscleGroup']).first()
-        secondary_muscle_groups_db = []
-        if exercise_data.get('secondaryMuscleGroups'):
-            for secondary_muscle_group in exercise_data['secondaryMuscleGroups']:
-                secondary_muscle_group_db = db.query(models.MuscleGroup).filter(
-                    models.MuscleGroup.name == secondary_muscle_group).first()
-                if secondary_muscle_group_db:
-                    secondary_muscle_groups_db.append(
-                        secondary_muscle_group_db)
-                else:
-                    logger.warning(
-                        f"Secondary muscle group {secondary_muscle_group} not found.")
 
-        db_exercise = models.Exercise(
+        primary_muscle_group = db.exec(select(MuscleGroup).where(MuscleGroup.name == exercise_data['primaryMuscleGroup'])).first()
+        secondary_muscle_groups = db.exec(select(MuscleGroup).where(MuscleGroup.name.in_(exercise_data['secondaryMuscleGroups']))).all()
+        equipment_instances = db.exec(select(Equipment).where(Equipment.name.in_(exercise_data['equipment']))).all()
+
+        if not isinstance(primary_muscle_group, MuscleGroup):
+            logger.error(f"Primary muscle group not found for exercise: {exercise_data['name']}")
+            continue
+        if not secondary_muscle_groups:
+            logger.error(f"Secondary muscle groups not found for exercise: {exercise_data['name']}")
+        if not equipment_instances:
+            logger.error(f"Equipment not found for exercise: {exercise_data['name']}")
+
+        db_exercise = Exercise(
             name=exercise_data['name'],
             type=exercise_data['type'],
-            primary_muscle_group=primary_muscle_group_db,
-            secondary_muscle_groups=secondary_muscle_groups_db,
+            primary_muscle_group=primary_muscle_group,
+            secondary_muscle_groups=secondary_muscle_groups,
+            equipment=equipment_instances
         )
+
         db.add(db_exercise)
         db.commit()
+        logger.info(f"Added exercise: {exercise_data['name']}")
 
 
-def build_set(row, db):
-    try:
-        exercise_db = db.query(models.Exercise).filter(
-            models.Exercise.name == row['exercise']).first()
-    except AttributeError:
-        logger.error(f"Exercise {row['exercise']} not found.")
-        return None
-    try:
-        equipment_db = db.query(models.Equipment).filter(
-            models.Equipment.name == row['equipment']).first()
-    except AttributeError:
-        logger.error(f"Equipment {row['Equipment']} not found.")
-        return None
+def create_sets(db: Session):
+    """Create sets from a JSON file."""
+    current_dir = os.getcwd()
+    sets_file_path = os.path.join(current_dir, 'data', 'strong-2024-08-22.csv')
+    with open(sets_file_path) as f:
+        sets = csv.DictReader(f)
 
-    datetime = pd.to_datetime(row["Date"])  # Convert to datetime
+        for set_data in sets:
+            statement = select(Exercise).where(Exercise.name == set_data['exercise'])
+            exercise = db.exec(statement).first()
 
-    db_set = models.Set(
-        exercise=exercise_db,
-        date=datetime,
-        weight=row['Weight'],
-        reps=row['Reps'],
-        duration=row['Seconds'],
-        distance=row['Distance'],
-        equipment=equipment_db
-    )
-    db.add(db_set)
-    db.commit()
+            statement = select(Equipment).where(Equipment.name == set_data['equipment'])
+            equipment = db.exec(statement).first()
 
+            db_set = Set(
+                exercise=exercise,
+                date=set_data['Date'],
+                weight=float(set_data['Weight']),
+                reps=int(set_data['Reps']),
+                notes=set_data['Notes'],
+                duration=int(set_data['Seconds']),
+                distance=float(set_data['Distance']),
+                equipment=equipment
+            )
 
-def create_sets(db: Session, data: pd.DataFrame = None):
-    # Create sets
-    logger.info("Adding sets...")
-    data.apply(lambda row: build_set(row, db), axis=1)
-    logger.info("Sets added.")
+            db.add(db_set)
+            try:
+                db.commit()
+            except sqlalchemy.exc.IntegrityError as e:
+                logger.error(f"Failed to add set for exercise {set_data['exercise']}: {e}")
+                db.rollback()
+            logger.info(f"Added set for exercise {set_data['exercise']}")
 
 
 if __name__ == '__main__':
-    from database import SessionLocal, Base, engine
-    Base.metadata.create_all(bind=engine)
-    db = SessionLocal()
-    # create_database(POSTGRES_DB)
-    create_muscle_groups(db)
-    create_equipment(db)
-    create_exercises(db)
+    from database import get_session
 
-    # apply converter
-    strong_csv.converter(apply_filter=False)
-    data = pd.read_csv(
-        f'data/strong-{pd.Timestamp.today().strftime('%Y-%m-%d')}.csv')
-    create_sets(db, data)
+    with next(get_session()) as db:
+        create_equipment(db)
+        create_muscle_groups(db)
+        create_exercises(db)
+        create_sets(db)
+
     db.close()
