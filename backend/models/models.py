@@ -63,12 +63,12 @@ class Set(SQLModel, table=True):
     exercise_id: int = Field(foreign_key="exercise.id")
     equipment_id: Optional[int] = Field(default=None, foreign_key="equipment.id")
     date: str
-    weight: float
-    reps: int
-    rpe: int
-    notes: str
-    duration: int
-    distance: float
+    weight: Optional[float]
+    reps: Optional[int]
+    rpe: Optional[int]
+    notes: Optional[str]
+    duration: Optional[int]
+    distance: Optional[float]
 
     # Relationship to Exercise
     exercise: Exercise = Relationship(back_populates="sets")

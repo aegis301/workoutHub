@@ -2,6 +2,7 @@
 import os
 import json
 import csv
+import sqlalchemy
 from sqlmodel import Session, select
 from models.models import Equipment, MuscleGroup, Exercise, Set
 from logger.logger import Logger
@@ -126,9 +127,13 @@ def create_sets(db: Session):
                 equipment=equipment
             )
 
-        db.add(db_set)
-        db.commit()
-        logger.info(f"Added set for exercise ID {set_data['exercise_id']}")
+            db.add(db_set)
+            try:
+                db.commit()
+            except sqlalchemy.exc.IntegrityError as e:
+                logger.error(f"Failed to add set for exercise {set_data['exercise']}: {e}")
+                db.rollback()
+            logger.info(f"Added set for exercise {set_data['exercise']}")
 
 
 if __name__ == '__main__':
@@ -139,5 +144,5 @@ if __name__ == '__main__':
         create_muscle_groups(db)
         create_exercises(db)
         create_sets(db)
-        
+
     db.close()
