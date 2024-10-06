@@ -4,7 +4,7 @@ from logger.logger import Logger
 from utils.key import POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_HOST, POSTGRES_PORT, POSTGRES_DB
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
-
+from populate import populate_db
 logger = Logger(__name__)
 
 connection_string = f"postgresql+psycopg2://{
@@ -18,6 +18,7 @@ Base = declarative_base()
 async def create_database(app: FastAPI):
     SQLModel.metadata.create_all(engine)
     try:
+        populate_db()
         yield
     finally:
         SQLModel.metadata.drop_all(engine)

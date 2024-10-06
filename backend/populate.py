@@ -1,21 +1,21 @@
 """Used to populate the database with dummy data for testing purposes."""
-import os
 import json
 import csv
 import sqlalchemy
 from sqlmodel import Session, select
 from models.models import Equipment, MuscleGroup, Exercise, Set
 from logger.logger import Logger
+from pathlib import Path
 
 logger = Logger(__name__)
 
-SERVER_URL = "http://localhost:8000"
+# Determine the project root directory
+project_root = Path(__file__).resolve().parent.parent
 
 
 def create_equipment(db: Session):
     """Create equipment from a JSON file."""
-    current_dir = os.getcwd()
-    equipment_file_path = os.path.join(current_dir, 'data', 'equipment.json')
+    equipment_file_path = project_root / 'data' / 'equipment.json'
     with open(equipment_file_path) as f:
         equipment = json.load(f)
 
@@ -54,8 +54,7 @@ def create_muscle_groups(db: Session):
             if subgroups and muscle_group_id:
                 process_muscle_groups(subgroups, muscle_group_id)
 
-    current_dir = os.getcwd()
-    muscle_groups_file_path = os.path.join(current_dir, 'data', 'muscle-groups.json')
+    muscle_groups_file_path = project_root / 'data' / 'muscle-groups.json'
     with open(muscle_groups_file_path) as f:
         muscle_groups = json.load(f)
 
@@ -65,8 +64,7 @@ def create_muscle_groups(db: Session):
 
 def create_exercises(db: Session):
     """Create exercises from a JSON file."""
-    current_dir = os.getcwd()
-    exercises_file_path = os.path.join(current_dir, 'data', 'exercises.json')
+    exercises_file_path = project_root / 'data' / 'exercises.json'
     with open(exercises_file_path) as f:
         exercises = json.load(f)
 
@@ -103,9 +101,8 @@ def create_exercises(db: Session):
 
 
 def create_sets(db: Session):
-    """Create sets from a JSON file."""
-    current_dir = os.getcwd()
-    sets_file_path = os.path.join(current_dir, 'data', 'strong-2024-08-22.csv')
+    """Create sets from a CSV file."""
+    sets_file_path = project_root / 'data' / 'strong-2024-08-22.csv'
     with open(sets_file_path) as f:
         sets = csv.DictReader(f)
 
@@ -134,6 +131,18 @@ def create_sets(db: Session):
                 logger.error(f"Failed to add set for exercise {set_data['exercise']}: {e}")
                 db.rollback()
             logger.info(f"Added set for exercise {set_data['exercise']}")
+
+
+def populate_db():
+    from database import get_session
+
+    with next(get_session()) as db:
+        create_equipment(db)
+        create_muscle_groups(db)
+        create_exercises(db)
+        create_sets(db)
+
+    db.close()
 
 
 if __name__ == '__main__':

@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from database import create_database
-from routers import equipment, muscle_groups, exercises
+from routers import equipment, muscle_groups, exercises, sets
 
 
 app = FastAPI(
@@ -14,6 +14,7 @@ app = FastAPI(
 app.include_router(equipment.router)
 app.include_router(muscle_groups.router)
 app.include_router(exercises.router)
+app.include_router(sets.router)
 
 
 @app.get("/")

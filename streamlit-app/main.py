@@ -1,10 +1,16 @@
 import streamlit as st
 import pandas as pd
+import requests
 
-# Load the data
-data = pd.read_csv('data/strong_augmented.csv')
+
+# get the data from the server
+sets_response = requests.get('http://localhost:8000/sets/')
+# convert to pandas dataframe
+data = sets_response.json()
+data = pd.DataFrame(data)
 
 st.title('workoutHub')
 
 # Display the data
 st.write(data)
+
