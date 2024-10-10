@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from sqlmodel import Session, select
-from models.models import Exercise
-from database import get_session
+from ..models.models import Exercise
+from ..database import get_session
 
 router = APIRouter(
     prefix="/exercises",
@@ -28,3 +28,10 @@ def create_exercise(exercise: Exercise, db: Session = Depends(get_session)):
     db.commit()
     db.refresh(exercise)
     return exercise
+
+
+@router.get("/primary_muscle_group/{primary_muscle_group}")
+def get_exercise_by_primary_muscle_group(primary_muscle_group: str, db: Session = Depends(get_session)):
+    statement = select(Exercise).where(Exercise.primary_muscle_group == primary_muscle_group)
+    exercises = db.exec(statement).all()
+    return exercises

@@ -3,8 +3,8 @@ import json
 import csv
 import sqlalchemy
 from sqlmodel import Session, select
-from models.models import Equipment, MuscleGroup, Exercise, Set
-from logger.logger import Logger
+from .models.models import Equipment, MuscleGroup, Exercise, Set
+from .logger.logger import Logger
 from pathlib import Path
 
 logger = Logger(__name__)

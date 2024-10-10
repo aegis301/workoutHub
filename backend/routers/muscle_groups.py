@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from sqlmodel import Session, select
-from models.models import MuscleGroup
-from database import get_session
+from ..models.models import MuscleGroup
+from ..database import get_session
 
 router = APIRouter(
     prefix="/muscle-groups",

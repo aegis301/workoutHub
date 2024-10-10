@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from sqlmodel import Session, select
-from models.models import Set
-from database import get_session
+from ..models.models import Set
+from ..database import get_session
 
 router = APIRouter(
     prefix="/sets",
@@ -28,3 +28,10 @@ def create_set(set: Set, db: Session = Depends(get_session)):
     db.commit()
     db.refresh(set)
     return set
+
+
+@router.get("/primary_muscle_group/{primary_muscle_group_name}")
+def get_set_by_primary_muscle_group_name(primary_muscle_group_name: str, db: Session = Depends(get_session)):
+    statement = select(Set).where(Set.primary_muscle_group == primary_muscle_group_name)
+    sets = db.exec(statement).all()
+    return sets
