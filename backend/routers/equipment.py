@@ -10,14 +10,14 @@ router = APIRouter(
 
 
 @router.get("/")
-def get_all_equipment(db: Session = Depends(get_session)):
+async def get_all_equipment(db: Session = Depends(get_session)):
     statement = select(Equipment)
     equipment = db.exec(statement).all()
     return equipment
 
 
 @router.post("/")
-def create_equipment(equipment: Equipment, db: Session = Depends(get_session)):
+async def create_equipment(equipment: Equipment, db: Session = Depends(get_session)):
     db.add(equipment)
     db.commit()
     db.refresh(equipment)
@@ -25,7 +25,7 @@ def create_equipment(equipment: Equipment, db: Session = Depends(get_session)):
 
 
 @router.get("/{equipment_id}")
-def get_equipment(equipment_id: int, db: Session = Depends(get_session)):
+async def get_equipment(equipment_id: int, db: Session = Depends(get_session)):
     statement = select(Equipment).where(Equipment.id == equipment_id)
     equipment = db.exec(statement).first()
     return equipment

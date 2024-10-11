@@ -10,28 +10,21 @@ router = APIRouter(
 
 
 @router.get("/")
-def get_exercises(db: Session = Depends(get_session)):
+async def get_exercises(db: Session = Depends(get_session)):
     statement = select(Exercise)
     exercises = db.exec(statement).all()
     return exercises
 
 
 @router.get("/{exercise_id}")
-def get_exercise(exercise_id: int, db: Session = Depends(get_session)):
+async def get_exercise(exercise_id: int, db: Session = Depends(get_session)):
     exercise = db.get(Exercise, exercise_id)
     return exercise
 
 
 @router.post("/")
-def create_exercise(exercise: Exercise, db: Session = Depends(get_session)):
+async def create_exercise(exercise: Exercise, db: Session = Depends(get_session)):
     db.add(exercise)
     db.commit()
     db.refresh(exercise)
     return exercise
-
-
-@router.get("/primary_muscle_group/{primary_muscle_group}")
-def get_exercise_by_primary_muscle_group(primary_muscle_group: str, db: Session = Depends(get_session)):
-    statement = select(Exercise).where(Exercise.primary_muscle_group == primary_muscle_group)
-    exercises = db.exec(statement).all()
-    return exercises
