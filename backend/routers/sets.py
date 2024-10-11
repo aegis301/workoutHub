@@ -32,6 +32,6 @@ def create_set(set: Set, db: Session = Depends(get_session)):
 
 @router.get("/primary_muscle_group/{primary_muscle_group_name}")
 def get_set_by_primary_muscle_group_name(primary_muscle_group_name: str, db: Session = Depends(get_session)):
-    statement = select(Set).where(Set.primary_muscle_group == primary_muscle_group_name)
+    statement = select(Set).where(Set.exercise.primary_muscle_group == primary_muscle_group_name)
     sets = db.exec(statement).all()
     return sets
