@@ -134,7 +134,7 @@ def create_sets(db: Session):
 
 
 def populate_db():
-    from database import get_session
+    from .database import get_session
 
     with next(get_session()) as db:
         create_equipment(db)
@@ -146,7 +146,7 @@ def populate_db():
 
 
 if __name__ == '__main__':
-    from database import get_session
+    from .database import get_session
 
     with next(get_session()) as db:
         create_equipment(db)
