@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
+from typing import List
 from sqlmodel import Session, select
-from ..models.models import Set, MuscleGroup, Exercise
+from ..models.models import Set, Exercise, MuscleGroup
 from ..database import get_session
 from ..logger.logger import Logger
 router = APIRouter(
@@ -32,25 +33,19 @@ async def create_set(set: Set, db: Session = Depends(get_session)):
     return set
 
 
-@router.get("/primary_muscle_group/{primary_muscle_group_name}")
-async def get_set_by_primary_muscle_group_name(primary_muscle_group_name: str, db: Session = Depends(get_session)):
-    # Fetch the MuscleGroup object by name
-    muscle_group_statement = select(MuscleGroup).where(MuscleGroup.name == primary_muscle_group_name)
-    muscle_group = db.exec(muscle_group_statement).first()
+@router.get("/primary_muscle_group/{primary_muscle_group_name}", response_model=List[Set])
+def get_sets_by_muscle_group_name(muscle_group_name: str, session: Session = Depends(get_session)):
+    # Query to select sets filtered by the muscle group name
+    statement = (
+        select(Set)
+        .join(Set.exercise)
+        .join(Exercise.primary_muscle_group)
+        .where(MuscleGroup.name == muscle_group_name)
+    )
 
-    if not muscle_group:
-        raise HTTPException(status_code=404, detail="Muscle group not found")
+    results = session.exec(statement).all()
 
-    # Extract child muscle group ids
-    for child in muscle_group.children:
-        logger.debug(child)
-    child_ids = [child.id for child in muscle_group.children]
+    if not results:
+        raise HTTPException(status_code=404, detail="No sets found for the given muscle group name")
 
-    # Include the parent muscle group id
-    muscle_group_ids = [muscle_group.id] + child_ids
-
-    # Fetch all Set objects where the Exercise's primary_muscle_group_id matches one of the muscle group IDs
-    sets_statement = select(Set).join(Set.exercise).where(Exercise.primary_muscle_group_id.in_(muscle_group_ids))
-    sets = db.exec(sets_statement).all()
-
-    return sets
+    return results
