@@ -12,6 +12,20 @@ router = APIRouter(
 logger = Logger(__name__)
 
 
+# Utility function to recursively get all children muscle groups
+def get_all_muscle_group_ids(muscle_group_id: int, session: Session) -> List[int]:
+    # Base query to get the muscle group itself and its children
+    group_statement = select(MuscleGroup).where(MuscleGroup.parent_id == muscle_group_id)
+    child_groups = session.exec(group_statement).all()
+
+    # Gather all child IDs recursively
+    ids = [muscle_group_id]
+    for group in child_groups:
+        ids.extend(get_all_muscle_group_ids(group.id, session))
+
+    return ids
+
+
 @router.get("/")
 async def get_sets(db: Session = Depends(get_session)):
     statement = select(Set)
@@ -34,18 +48,28 @@ async def create_set(set: Set, db: Session = Depends(get_session)):
 
 
 @router.get("/primary_muscle_group/{primary_muscle_group_name}", response_model=List[Set])
-def get_sets_by_muscle_group_name(muscle_group_name: str, session: Session = Depends(get_session)):
-    # Query to select sets filtered by the muscle group name
+def get_sets_by_muscle_group_and_children(muscle_group_name: str, session: Session = Depends(get_session)):
+    # Get the muscle group by name
+    group_statement = select(MuscleGroup).where(MuscleGroup.name == muscle_group_name)
+    muscle_group = session.exec(group_statement).first()
+
+    if not muscle_group:
+        raise HTTPException(status_code=404, detail="Muscle group not found")
+
+    # Get all muscle group IDs (including children)
+    muscle_group_ids = get_all_muscle_group_ids(muscle_group.id, session)
+
+    # Query sets for the muscle group and all its children
     statement = (
         select(Set)
         .join(Set.exercise)
         .join(Exercise.primary_muscle_group)
-        .where(MuscleGroup.name == muscle_group_name)
+        .where(MuscleGroup.id.in_(muscle_group_ids))
     )
 
     results = session.exec(statement).all()
 
     if not results:
-        raise HTTPException(status_code=404, detail="No sets found for the given muscle group name")
+        raise HTTPException(status_code=404, detail="No sets found for the given muscle group and its children")
 
     return results
