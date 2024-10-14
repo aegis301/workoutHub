@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import requests
+import matplotlib.pyplot as plt
 
 
 def convert_response_data_to_df(response_data):
@@ -11,27 +12,24 @@ def convert_response_data_to_df(response_data):
 
 # get the data from the server
 sets_response = requests.get('http://localhost:8000/sets/')
+exercises_response = requests.get('http://localhost:8000/exercises/')
+muscle_groups_response = requests.get('http://localhost:8000/muscle-groups/')
 
 sets = convert_response_data_to_df(sets_response)
+exercises = convert_response_data_to_df(exercises_response)
+muscle_groups = convert_response_data_to_df(muscle_groups_response)
 
 st.title('workoutHub')
 
 # Display the data
 st.write(sets)
+st.write(exercises)
+st.write(muscle_groups)
 
-st.header("Exercise Count by Primary Muscle Group per Week")
-primary_muscle_group_response = requests.get('http://localhost:8000/sets/primary_muscle_group/Back')
-sets_by_primary_muscle_group = convert_response_data_to_df(primary_muscle_group_response)
-# group by week
-# coearce the date to datetime
-sets_by_primary_muscle_group["date"] = pd.to_datetime(sets_by_primary_muscle_group["date"])
-# extract both year and week number to avoid grouping different years together
-sets_by_primary_muscle_group["year"] = sets_by_primary_muscle_group["date"].dt.year
-sets_by_primary_muscle_group["week"] = sets_by_primary_muscle_group["date"].dt.isocalendar().week
+sets = pd.merge(sets, exercises, left_on='exercise_id', right_on='id')
+sets = pd.merge(sets, muscle_groups, left_on='primary_muscle_group_id', right_on='id')
+st.write(sets)
 
-# group by both year and week
-sets_by_primary_muscle_group_by_week = sets_by_primary_muscle_group.groupby(["year", "week"])["exercise_id"].count().reset_index()
-
-# Display the grouped data
-st.write(sets_by_primary_muscle_group_by_week)
-st.line_chart(sets_by_primary_muscle_group_by_week, y="exercise_id")
+# pie chart of sets by primary muscle group
+st.write(sets['name_y'].value_counts().plot.pie())
+plt.show()
