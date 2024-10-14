@@ -1,6 +1,7 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
+from typing import List
 from sqlmodel import Session, select
-from ..models.models import Set
+from ..models.models import Set, Exercise, MuscleGroup
 from ..database import get_session
 
 router = APIRouter(
@@ -30,8 +31,19 @@ def create_set(set: Set, db: Session = Depends(get_session)):
     return set
 
 
-@router.get("/primary_muscle_group/{primary_muscle_group_name}")
-def get_set_by_primary_muscle_group_name(primary_muscle_group_name: str, db: Session = Depends(get_session)):
-    statement = select(Set).where(Set.exercise.primary_muscle_group == primary_muscle_group_name)
-    sets = db.exec(statement).all()
-    return sets
+@router.get("/primary_muscle_group/{primary_muscle_group_name}", response_model=List[Set])
+def get_sets_by_muscle_group_name(muscle_group_name: str, session: Session = Depends(get_session)):
+    # Query to select sets filtered by the muscle group name
+    statement = (
+        select(Set)
+        .join(Set.exercise)
+        .join(Exercise.primary_muscle_group)
+        .where(MuscleGroup.name == muscle_group_name)
+    )
+
+    results = session.exec(statement).all()
+
+    if not results:
+        raise HTTPException(status_code=404, detail="No sets found for the given muscle group name")
+
+    return results
