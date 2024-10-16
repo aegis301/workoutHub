@@ -8,6 +8,8 @@ from .logger.logger import Logger
 from pathlib import Path
 
 logger = Logger(__name__)
+# set logging level to info
+logger.set_level('INFO')
 
 # Determine the project root directory
 project_root = Path(__file__).resolve().parent.parent
@@ -29,7 +31,7 @@ def create_equipment(db: Session):
         db_equipment = Equipment(name=equipment_name)
         db.add(db_equipment)
         db.commit()
-        logger.info(f"Added equipment: {equipment_name}")
+        logger.debug(f"Added equipment: {equipment_name}")
 
 
 def create_muscle_groups(db: Session):
@@ -38,7 +40,7 @@ def create_muscle_groups(db: Session):
         db_muscle_group = MuscleGroup(name=name, parent_id=parent_id)
         db.add(db_muscle_group)
         db.commit()
-        logger.info(f"Added muscle group: {name}")
+        logger.debug(f"Added muscle group: {name}")
         return db_muscle_group.id
 
     def process_muscle_groups(muscle_groups, parent_id=None):
@@ -97,7 +99,7 @@ def create_exercises(db: Session):
 
         db.add(db_exercise)
         db.commit()
-        logger.info(f"Added exercise: {exercise_data['name']}")
+        logger.debug(f"Added exercise: {exercise_data['name']}")
 
 
 def create_sets(db: Session):
@@ -130,7 +132,7 @@ def create_sets(db: Session):
             except sqlalchemy.exc.IntegrityError as e:
                 logger.error(f"Failed to add set for exercise {set_data['exercise']}: {e}")
                 db.rollback()
-            logger.info(f"Added set for exercise {set_data['exercise']}")
+            logger.debug(f"Added set for exercise {set_data['exercise']}")
 
 
 def populate_db():
