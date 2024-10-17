@@ -1,4 +1,5 @@
-from fastapi import APIRouter, Depends
+import msgpack
+from fastapi import APIRouter, Depends, Response
 from sqlmodel import Session, select
 from ..models.models import Equipment
 from ..database import get_session
@@ -13,19 +14,24 @@ router = APIRouter(
 async def get_all_equipment(db: Session = Depends(get_session)):
     statement = select(Equipment)
     equipment = db.exec(statement).all()
-    return equipment
 
+    # Convert Equipment objects to dictionaries
+    equipment_dict = [item.model_dump() for item in equipment]
 
-@router.post("/")
-async def create_equipment(equipment: Equipment, db: Session = Depends(get_session)):
-    db.add(equipment)
-    db.commit()
-    db.refresh(equipment)
-    return equipment
+    packed_equipment = msgpack.packb(equipment_dict, use_bin_type=True)
+    return Response(content=packed_equipment, media_type="application/msgpack")
 
 
 @router.get("/{equipment_id}")
 async def get_equipment(equipment_id: int, db: Session = Depends(get_session)):
     statement = select(Equipment).where(Equipment.id == equipment_id)
     equipment = db.exec(statement).first()
-    return equipment
+
+    if equipment is None:
+        return Response(status_code=404, content="Equipment not found")
+
+    # Convert Equipment object to dictionary
+    equipment_dict = equipment.model_dump()
+
+    packed_equipment = msgpack.packb(equipment_dict, use_bin_type=True)
+    return Response(content=packed_equipment, media_type="application/msgpack")
