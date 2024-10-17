@@ -23,6 +23,13 @@ class Logger:
         self.stream_handler = logging.StreamHandler()
         self.stream_handler.setFormatter(self.formatter)
         self.logger.addHandler(self.stream_handler)
+        
+    def set_level(self, level_name):
+        level = getattr(logging, level_name.upper(), None)
+        if isinstance(level, int):
+            self.logger.setLevel(level)
+        else:
+            self.logger.error(f"Invalid log level: {level_name}")
 
     def debug(self, message):
         self.logger.debug(message)
