@@ -78,6 +78,7 @@ def create_exercises(db: Session):
             continue
 
         primary_muscle_group = db.exec(select(MuscleGroup).where(MuscleGroup.name == exercise_data['primaryMuscleGroup'])).first()
+        
         secondary_muscle_groups = db.exec(select(MuscleGroup).where(MuscleGroup.name.in_(exercise_data['secondaryMuscleGroups']))).all()
         equipment_instances = db.exec(select(Equipment).where(Equipment.name.in_(exercise_data['equipment']))).all()
 
