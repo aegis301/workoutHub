@@ -5,7 +5,7 @@ from typing import List
 from ..models.models import Set, MuscleGroup, Exercise
 from ..database import get_session
 from ..logger.logger import Logger
-
+from .utils import enrich_sets
 router = APIRouter(
     prefix="/sets",
     tags=["sets"],
@@ -13,6 +13,9 @@ router = APIRouter(
 
 logger = Logger(__name__)
 
+MAIN_MUSCLE_GROUPS = [
+    "Back": ["Latissimus", ]
+]
 
 # Utility function to recursively get all children muscle groups
 def get_all_muscle_group_ids(muscle_group_id: int, session: Session) -> List[int]:
@@ -31,8 +34,7 @@ async def get_sets(db: Session = Depends(get_session)):
     statement = select(Set)
     sets = db.exec(statement).all()
 
-    # Convert Set objects to dictionaries
-    sets_dict = [set.model_dump() for set in sets]
+    sets_dict = enrich_sets(sets)
 
     packed_sets = msgpack.packb(sets_dict, use_bin_type=True)
     return Response(content=packed_sets, media_type="application/msgpack")
@@ -91,6 +93,7 @@ def get_sets_by_time_window(start_date: str, end_date: str, session: Session = D
 
     packed_results = msgpack.packb(results_dict, use_bin_type=True)
     return Response(content=packed_results, media_type="application/msgpack")
+
 
 # get sets by a certain time windwow and muscle group
 @router.get("/time_window/{start_date}/{end_date}/primary_muscle_group/{primary_muscle_group_name}", response_model=List[Set])
