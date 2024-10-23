@@ -13,9 +13,6 @@ router = APIRouter(
 
 logger = Logger(__name__)
 
-MAIN_MUSCLE_GROUPS = [
-    "Back": ["Latissimus", ]
-]
 
 # Utility function to recursively get all children muscle groups
 def get_all_muscle_group_ids(muscle_group_id: int, session: Session) -> List[int]:
