@@ -1,12 +1,9 @@
 import streamlit as st
-import requests
 import plotly.express as px
-from utils import convert_response_data_to_df
+from utils import query_with_cache
 
 # get the data from the server
-sets_response = requests.get('http://localhost:8000/sets/')
-
-sets = convert_response_data_to_df(sets_response)
+sets = query_with_cache('http://localhost:8000/sets/')
 
 st.title('workoutHub')
 
