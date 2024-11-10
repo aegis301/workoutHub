@@ -120,3 +120,4 @@ def get_sets_by_time_window_and_muscle_group(start_date: str, end_date: str, pri
 
     packed_results = msgpack.packb(results_dict, use_bin_type=True)
     return Response(content=packed_results, media_type="application/msgpack")
+
