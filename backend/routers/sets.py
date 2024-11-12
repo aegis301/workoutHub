@@ -120,3 +120,31 @@ def get_sets_by_time_window_and_muscle_group(start_date: str, end_date: str, pri
 
     packed_results = msgpack.packb(results_dict, use_bin_type=True)
     return Response(content=packed_results, media_type="application/msgpack")
+
+
+@router.get("/exercises/{exercise_id}", response_model=List[Set])
+def get_sets_by_exercise(exercise_id: int, session: Session = Depends(get_session)):
+    statement = select(Set).where(Set.exercise_id == exercise_id)
+    results = session.exec(statement).all()
+
+    # Convert Set objects to dictionaries
+    results_dict = [result.model_dump() for result in results]
+
+    packed_results = msgpack.packb(results_dict, use_bin_type=True)
+    return Response(content=packed_results, media_type="application/msgpack")
+
+
+@router.get("/exercises/equipment/{exercise_id}/{equipment_id}", response_model=List[Set])
+def get_sets_by_exercise_and_equipment(exercise_id: int, equipment_id: int, session: Session = Depends(get_session)):
+    statement = select(Set).where(
+        (Set.exercise_id == exercise_id) & (Set.equipment_id == equipment_id)
+    )
+    results = session.exec(statement).all()
+
+    # Convert Set objects to dictionaries
+    results_dict = [result.model_dump() for result in results]
+
+    packed_results = msgpack.packb(results_dict, use_bin_type=True)
+    logger.info(f"Packed results: {packed_results}")  # Log the packed results for debugging
+    return Response(content=packed_results, media_type="application/msgpack")
+
