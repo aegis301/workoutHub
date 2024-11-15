@@ -1,4 +1,6 @@
 import streamlit as st
+import plotly.express as px
+import pandas as pd
 from utils import query_with_cache
 
 st.set_page_config(
@@ -52,4 +54,25 @@ with st.form(key="exercise_form"):
 
 if submit_button:
     sets = query_exercise(exercise_selection, equipment_selection)
+
+
+# GRAPHS
+
+# total volume per exercise
+if st.session_state.sets_per_exercise is not None:
+    # if the exercise uses body weight, 80kg are added to the total volume
+    if st.session_state.sets_per_exercise["equipment_id"].isna().all():
+        st.session_state.sets_per_exercise["weight"] = st.session_state.sets_per_exercise["weight"] + 85
     st.write(st.session_state.sets_per_exercise)
+    st.session_state.sets_per_exercise["date"] = pd.to_datetime(st.session_state.sets_per_exercise["date"])
+    st.session_state.sets_per_exercise["total_volume"] = st.session_state.sets_per_exercise["weight"] * st.session_state.sets_per_exercise["reps"]  # total volume per set
+    # group by date
+    sets_by_date = st.session_state.sets_per_exercise.groupby("date").agg(total_volume=("total_volume", "sum")).reset_index()
+    fig1 = px.line(
+        sets_by_date,
+        x="date",
+        y="total_volume",
+        title="Total Volume per Exercise",
+        labels={"total_volume": "Total Volume (kg)"},
+    )
+    st.plotly_chart(fig1)
