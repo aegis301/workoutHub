@@ -51,7 +51,7 @@ async def get_set(set_id: int, db: Session = Depends(get_session)):
 
 
 @router.get("/primary_muscle_group/{primary_muscle_group_name}", response_model=List[Set])
-def get_sets_by_muscle_group_and_children(muscle_group_name: str, session: Session = Depends(get_session)):
+def get_sets_by_primary_muscle_group_and_children(muscle_group_name: str, session: Session = Depends(get_session)):
     # Get the muscle group by name
     group_statement = select(MuscleGroup).where(MuscleGroup.name == muscle_group_name)
     muscle_group = session.exec(group_statement).first()

@@ -14,7 +14,7 @@ exercises = query_with_cache('http://localhost:8000/exercises/')
 equipment = query_with_cache('http://localhost:8000/equipment/')
 
 if "sets_per_exercise" not in st.session_state:
-    st.session_state.sets_per_exercise = {}
+    st.session_state.sets_per_exercise = pd.DataFrame()
 
 
 def query_exercise(e_selection, eq_selection):
@@ -55,11 +55,12 @@ with st.form(key="exercise_form"):
 if submit_button:
     sets = query_exercise(exercise_selection, equipment_selection)
 
-
+if st.session_state.sets_per_exercise.shape[0] == 0:
+    st.warning("No data available for the selected exercise or combination of exercise and equipment.")
 # GRAPHS
 
 # total volume per exercise
-if st.session_state.sets_per_exercise is not None:
+if st.session_state.sets_per_exercise.shape[0] > 0:
     # if the exercise uses body weight, 80kg are added to the total volume
     if st.session_state.sets_per_exercise["equipment_id"].isna().all():
         st.session_state.sets_per_exercise["weight"] = st.session_state.sets_per_exercise["weight"] + 85
