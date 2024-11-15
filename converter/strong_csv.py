@@ -53,7 +53,6 @@ def converter(apply_filter=False):
         data['exercise'], data['equipment'] = zip(
             *data['Exercise Name'].map(strip_appendix))
     except ValueError:
-        print(data['Exercise Name'].map(strip_appendix))
         data['exercise'] = data['Exercise Name']
     data.drop(columns=["Workout Name", "Duration"], inplace=True)
     # augment data with exercise data

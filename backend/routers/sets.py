@@ -145,6 +145,4 @@ def get_sets_by_exercise_and_equipment(exercise_id: int, equipment_id: int, sess
     results_dict = [result.model_dump() for result in results]
 
     packed_results = msgpack.packb(results_dict, use_bin_type=True)
-    logger.info(f"Packed results: {packed_results}")  # Log the packed results for debugging
     return Response(content=packed_results, media_type="application/msgpack")
-
