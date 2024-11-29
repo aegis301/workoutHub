@@ -23,7 +23,7 @@ def query_muscle_group(mg_selection):
     st.session_state.muscle_group_selection = mg_selection
     # find muscle group id
     for mg in mg_selection:
-        new_data = query_with_cache(f'http://localhost:8000/sets/muscle-groups/{mg}')
+        new_data = query_with_cache(f'http://localhost:8000/sets/primary-muscle-group/{mg}')
         st.session_state.sets_per_muscle_group = pd.concat(
             [st.session_state.sets_per_muscle_group, new_data], ignore_index=True
         )
