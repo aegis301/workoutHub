@@ -1,13 +1,13 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
-import { auth } from '../../auth';
+import Link from 'next/link';
 
-export default async function HomePage() {
-  const session = await auth();
+export default function HomePage() {
+  
 
   return (    
       <Typography>
-        Welcome to Toolpad, {session?.user?.name || 'User'}!
+        Welcome to <Link href="https://mui.com/toolpad/core/introduction">Toolpad Core!</Link>
       </Typography>
   );
 }

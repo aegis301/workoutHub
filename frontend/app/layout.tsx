@@ -3,10 +3,9 @@ import { NextAppProvider } from '@toolpad/core/nextjs';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-
+import LinearProgress from '@mui/material/LinearProgress'
 import type { Navigation } from '@toolpad/core/AppProvider';
-import { SessionProvider, signIn, signOut } from 'next-auth/react';
-import { auth } from '../auth';
+
 import theme from '../theme';
 
 const NAVIGATION: Navigation = [
@@ -31,33 +30,27 @@ const BRANDING = {
 };
 
 
-const AUTHENTICATION = {
-  signIn,
-  signOut,
-};
 
-
-export default async function RootLayout(props: { children: React.ReactNode }) {
-  const session = await auth();
+export default function RootLayout(props: { children: React.ReactNode }) {
+  
 
   return (
     <html lang="en" data-toolpad-color-scheme="light" suppressHydrationWarning>
       <body>
-        <SessionProvider session={session}>
+        
           <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-          
+          <React.Suspense fallback={<LinearProgress />}>
             <NextAppProvider
               navigation={NAVIGATION}
               branding={BRANDING}
-              session={session}
-              authentication={AUTHENTICATION}
+              
               theme={theme}
             >
               {props.children}
             </NextAppProvider>
-            
+            </React.Suspense>
           </AppRouterCacheProvider>
-        </SessionProvider>
+        
       </body>
     </html>
   );
