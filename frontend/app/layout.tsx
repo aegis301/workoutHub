@@ -2,7 +2,7 @@ import * as React from 'react';
 import { NextAppProvider } from '@toolpad/core/nextjs';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import FitnessCenter from '@mui/icons-material/FitnessCenter';
 import LinearProgress from '@mui/material/LinearProgress'
 import type { Navigation } from '@toolpad/core/AppProvider';
 
@@ -19,14 +19,14 @@ const NAVIGATION: Navigation = [
     icon: <DashboardIcon />,
   },
   {
-    segment: 'orders',
-    title: 'Orders',
-    icon: <ShoppingCartIcon />,
+    segment: 'exercises',
+    title: 'Exercises',
+    icon: <FitnessCenter />,
   },
 ];
 
 const BRANDING = {
-  title: 'My Toolpad Core Next.js App',
+  title: 'workoutHub',
 };
 
 
