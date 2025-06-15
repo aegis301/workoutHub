@@ -11,7 +11,7 @@
             "Dumbell",
             "Smith Machine"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Incline Bench Press": {
         "name": "Incline Bench Press",
@@ -25,7 +25,7 @@
             "Dumbell",
             "Smith Machine"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Bent Over Row": {
         "name": "Bent Over Row",
@@ -40,7 +40,7 @@
             "Dumbell",
             "Smith Machine"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Lunge": {
         "name": "Lunge",
@@ -56,7 +56,7 @@
             "Barbell",
             "Smith Machine"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Bicep Curl": {
         "name": "Bicep Curl",
@@ -67,7 +67,7 @@
             "Barbell",
             "Cable"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Pull Up": {
         "name": "Pull Up",
@@ -81,14 +81,14 @@
             "Bodyweight",
             "Assisted"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Tennis": {
         "name": "Tennis",
         "primaryMuscleGroup": "Whole Body",
         "secondaryMuscleGroups": [],
         "equipment": [],
-        "type": "Cardio"
+        "type": "cardio"
     },
     "Deadlift": {
         "name": "Deadlift",
@@ -103,7 +103,7 @@
             "Cable",
             "Kettlebell"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Lateral Raise": {
         "name": "Lateral Raise",
@@ -116,7 +116,7 @@
             "Dumbell",
             "Cable"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Rowing": {
         "name": "Rowing",
@@ -132,7 +132,7 @@
         "equipment": [
             "Machine"
         ],
-        "type": "Cardio"
+        "type": "cardio"
     },
     "Squat": {
         "name": "Squat",
@@ -147,7 +147,7 @@
             "Dumbell",
             "Smith Machine"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Push Up": {
         "name": "Push Up",
@@ -159,7 +159,7 @@
         "equipment": [
             "Bodyweight"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Triceps Extension": {
         "name": "Triceps Extension",
@@ -171,7 +171,7 @@
             "Cable",
             "Machine"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Bulgarian Split Squat": {
         "name": "Bulgarian Split Squat",
@@ -186,7 +186,7 @@
             "Barbell",
             "Smith Machine"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Seated Overhead Press": {
         "name": "Seated Overhead Press",
@@ -199,7 +199,7 @@
             "Barbell",
             "Dumbell"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Russian Twist": {
         "name": "Russian Twist",
@@ -212,7 +212,7 @@
             "Plate",
             "Medicine Ball"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Flat Leg Raise": {
         "name": "Flat Leg Raise",
@@ -223,7 +223,7 @@
         "equipment": [
             "Bodyweight"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Reverse Fly": {
         "name": "Reverse Fly",
@@ -237,7 +237,7 @@
             "Machine",
             "Cable"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Chest Dip": {
         "name": "Chest Dip",
@@ -250,7 +250,7 @@
             "Bodyweight",
             "Assisted"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Inverted Row": {
         "name": "Inverted Row",
@@ -263,7 +263,7 @@
             "Bodyweight",
             "TRX"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Front Raise": {
         "name": "Front Raise",
@@ -275,7 +275,7 @@
             "Plate",
             "Cable"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Standing Calf Raise": {
         "name": "Standing Calf Raise",
@@ -287,14 +287,14 @@
             "Smith Machine",
             "Machine"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Running": {
         "name": "Running",
         "primaryMuscleGroup": "Legs",
         "secondaryMuscleGroups": [],
         "equipment": [],
-        "type": "Cardio"
+        "type": "cardio"
     },
     "Upright Row": {
         "name": "Upright Row",
@@ -308,7 +308,7 @@
             "Cable",
             "Smith Machine"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Bench Dip": {
         "name": "Bench Dip",
@@ -320,14 +320,14 @@
         "equipment": [
             "Bodyweight"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Yoga": {
         "name": "Yoga",
         "primaryMuscleGroup": "Whole Body",
         "secondaryMuscleGroups": [],
         "equipment": [],
-        "type": "Mobility"
+        "type": "Flexibility"
     },
     "Overhead Press": {
         "name": "Overhead Press",
@@ -341,7 +341,7 @@
             "Smith Machine",
             "Cable"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Chest Fly": {
         "name": "Chest Fly",
@@ -353,7 +353,7 @@
             "Dumbell",
             "Cable"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Single Leg Deadlift": {
         "name": "Single Leg Deadlift",
@@ -365,7 +365,7 @@
         "equipment": [
             "Dumbell"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Single Leg Standing Calf Raises": {
         "name": "Single Leg Standing Calf Raises",
@@ -375,7 +375,7 @@
             "Bodyweight",
             "Dumbell"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Pullover": {
         "name": "Pullover",
@@ -387,7 +387,7 @@
         "equipment": [
             "Cable"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Lat Pulldown": {
         "name": "Lat Pulldown",
@@ -400,7 +400,7 @@
             "Cable",
             "Machine"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Seated Row": {
         "name": "Seated Row",
@@ -413,7 +413,7 @@
             "Machine",
             "Cable"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Hip Abductor": {
         "name": "Hip Abductor",
@@ -425,7 +425,7 @@
             "Machine",
             "Cable"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Lying Leg Curl": {
         "name": "Lying Leg Curl",
@@ -436,7 +436,7 @@
         "equipment": [
             "Machine"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Leg Extension": {
         "name": "Leg Extension",
@@ -445,7 +445,7 @@
         "equipment": [
             "Machine"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Back Extension": {
         "name": "Back Extension",
@@ -457,7 +457,7 @@
         "equipment": [
             "Machine"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Seated Calf Raise": {
         "name": "Seated Calf Raise",
@@ -466,7 +466,7 @@
         "equipment": [
             "Plate Loaded"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Shoulder Press": {
         "name": "Shoulder Press",
@@ -477,7 +477,7 @@
         "equipment": [
             "Machine"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Triceps Pushdown": {
         "name": "Triceps Pushdown",
@@ -486,7 +486,7 @@
         "equipment": [
             "Cable"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Chest Press": {
         "name": "Chest Press",
@@ -499,7 +499,7 @@
             "Machine",
             "Cable"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Crunch": {
         "name": "Crunch",
@@ -508,7 +508,7 @@
         "equipment": [
             "Machine"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Decline Crunch": {
         "name": "Decline Crunch",
@@ -517,7 +517,7 @@
         "equipment": [
             "Bodyweight"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Cable Crunch": {
         "name": "Cable Crunch",
@@ -526,7 +526,7 @@
         "equipment": [
             "Cable"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Leg Raise": {
         "name": "Leg Raise",
@@ -535,7 +535,7 @@
         "equipment": [
             "Bodyweight"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Hip Adductor": {
         "name": "Hip Adductor",
@@ -545,7 +545,7 @@
             "Machine",
             "Cable"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Seated Leg Press": {
         "name": "Seated Leg Press",
@@ -557,7 +557,7 @@
         "equipment": [
             "Machine"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Seated Wide-Grip Row": {
         "name": "Seated Wide-Grip Row",
@@ -569,7 +569,7 @@
         "equipment": [
             "Cable"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Lat Pulldown - Close Grip": {
         "name": "Lat Pulldown - Close Grip",
@@ -581,7 +581,7 @@
         "equipment": [
             "Cable"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Shoulder External Rotation": {
         "name": "Shoulder External Rotation",
@@ -590,7 +590,7 @@
         "equipment": [
             "Cable"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Side Bend": {
         "name": "Side Bend",
@@ -599,7 +599,7 @@
         "equipment": [
             "Cable"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Lat Push Down": {
         "name": "Lat Push Down",
@@ -610,7 +610,7 @@
         "equipment": [
             "Cable"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Jackknife Sit Up": {
         "name": "Jackknife Sit Up",
@@ -619,7 +619,7 @@
         "equipment": [
             "Bodyweight"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Triceps Press": {
         "name": "Triceps Press",
@@ -628,7 +628,7 @@
         "equipment": [
             "Machine"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Calf Press on Seated Leg Press": {
         "name": "Calf Press on Seated Leg Press",
@@ -637,7 +637,7 @@
         "equipment": [
             "Machine"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Good Morning": {
         "name": "Good Morning",
@@ -649,7 +649,7 @@
         "equipment": [
             "Barbell"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Trap Bar Deadlift": {
         "name": "Trap Bar Deadlift",
@@ -661,7 +661,7 @@
         "equipment": [
             "Trap Bar"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Face Pull": {
         "name": "Face Pull",
@@ -673,7 +673,7 @@
         "equipment": [
             "Cable"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Front Squat": {
         "name": "Front Squat",
@@ -685,7 +685,7 @@
         "equipment": [
             "Barbell"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Sit Up": {
         "name": "Sit Up",
@@ -694,7 +694,7 @@
         "equipment": [
             "Bodyweight"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Iso-Lateral Row": {
         "name": "Iso-Lateral Row",
@@ -706,7 +706,7 @@
         "equipment": [
             "Machine"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Leg Press": {
         "name": "Leg Press",
@@ -718,7 +718,7 @@
         "equipment": [
             "Machine"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Stiff Deadlift": {
         "name": "Stiff Deadlift",
@@ -730,7 +730,7 @@
         "equipment": [
             "Cable"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Glute Bridge": {
         "name": "Glute Bridge",
@@ -741,7 +741,7 @@
         "equipment": [
             "Bodyweight"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Hip Thrust": {
         "name": "Hip Thrust",
@@ -753,7 +753,7 @@
         "equipment": [
             "Barbell"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Pull Over": {
         "name": "Pull Over",
@@ -765,7 +765,7 @@
             "Dumbell",
             "Cable"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Preacher Curl": {
         "name": "Preacher Curl",
@@ -776,7 +776,7 @@
             "Dumbell",
             "Cable"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Calf Press on Leg Press": {
         "name": "Calf Press on Leg Press",
@@ -785,35 +785,35 @@
         "equipment": [
             "Machine"
         ],
-        "type": "Strength"
+        "type": "strength"
     },
     "Swimming": {
         "name": "Swimming",
         "primaryMuscleGroup": "Whole Body",
         "secondaryMuscleGroups": [],
         "equipment": [],
-        "type": "Cardio"
+        "type": "cardio"
     },
     "Wall Climbing": {
         "name": "Wall Climbing",
         "primaryMuscleGroup": "Whole Body",
         "secondaryMuscleGroups": [],
         "equipment": [],
-        "type": "Cardio"
+        "type": "cardio"
     },
     "Hiking": {
         "name": "Hiking",
         "primaryMuscleGroup": "Whole Body",
         "secondaryMuscleGroups": [],
         "equipment": [],
-        "type": "Cardio"
+        "type": "cardio"
     },
     "Road Cycling": {
         "name": "Road Cycling",
         "primaryMuscleGroup": "Legs",
         "secondaryMuscleGroups": [],
         "equipment": [],
-        "type": "Cardio"
+        "type": "cardio"
     },
     "Bent Over One Arm Row": {
         "name": "Bent Over One Arm Row",
@@ -827,6 +827,6 @@
             "Dumbell",
             "Cable"
         ],
-        "type": "Strength"
+        "type": "strength"
     }
     }

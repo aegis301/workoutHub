@@ -1,6 +1,8 @@
-from typing import Optional, List
-from sqlmodel import Field, SQLModel, Relationship
+from datetime import datetime
 from enum import Enum
+from typing import List, Optional
+
+from sqlmodel import Field, Relationship, SQLModel
 
 
 # This linking model is needed for many-to-many relationship between Exercise and MuscleGroup.
@@ -48,11 +50,11 @@ class ExerciseType(str, Enum):
 class Exercise(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     name: str
-    type: str
+    type: ExerciseType = Field(sa_column_kwargs={"default": ExerciseType.STRENGTH})
     primary_muscle_group_id: Optional[int] = Field(default=None, foreign_key="musclegroup.id")
 
     # Relationships to MuscleGroup and Equipment
-    primary_muscle_group: MuscleGroup = Relationship(back_populates="primary_exercises")
+    primary_muscle_group: Optional[MuscleGroup] = Relationship(back_populates="primary_exercises")
     secondary_muscle_groups: List["MuscleGroup"] = Relationship(back_populates="secondary_exercises", link_model=ExerciseMuscleGroupLink)
     equipment: List["Equipment"] = Relationship(back_populates="exercises", link_model=ExerciseEquipmentLink)
     sets: List["Set"] = Relationship(back_populates="exercise")
@@ -62,14 +64,14 @@ class Set(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     exercise_id: int = Field(foreign_key="exercise.id")
     equipment_id: Optional[int] = Field(default=None, foreign_key="equipment.id")
-    date: str
-    weight: Optional[float]
-    reps: Optional[int]
-    rpe: Optional[int]
-    notes: Optional[str]
-    duration: Optional[int]
-    distance: Optional[float]
+    date: datetime
+    weight: Optional[float] = Field(default=None, ge=0.0)
+    reps: Optional[int] = Field(default=None, ge=0)
+    rpe: Optional[int] = Field(default=None, ge=1, le=10)  # Rate of Perceived Exertion
+    notes: Optional[str] = Field(default=None, max_length=500)
+    duration: Optional[int] = Field(default=None, ge=0)  # Duration in seconds for cardio exercises
+    distance: Optional[float] = Field(default=None, ge=0.0)  # Distance in kilometers for cardio exercises
 
     # Relationship to Exercise
     exercise: Exercise = Relationship(back_populates="sets")
-    equipment: Equipment = Relationship(back_populates="sets")
+    equipment: Optional[Equipment] = Relationship(back_populates="sets")

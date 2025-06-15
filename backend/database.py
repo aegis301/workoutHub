@@ -1,11 +1,12 @@
-from sqlalchemy.ext.declarative import declarative_base
-from sqlmodel import SQLModel, create_engine, Session
-from .logger.logger import Logger
-from .utils.key import POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_HOST, POSTGRES_PORT, POSTGRES_DB
 from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
+from sqlalchemy.ext.declarative import declarative_base
+from sqlmodel import Session, SQLModel, create_engine
+
 from .populate import populate_db
-logger = Logger(__name__)
+from .utils.key import (POSTGRES_DB, POSTGRES_HOST, POSTGRES_PASSWORD,
+                        POSTGRES_PORT, POSTGRES_USER)
 
 connection_string = f"postgresql+psycopg2://{
     POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}"

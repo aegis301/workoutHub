@@ -1,11 +1,13 @@
 """Used to populate the database with dummy data for testing purposes."""
-import json
 import csv
+import json
+from pathlib import Path
+
 import sqlalchemy
 from sqlmodel import Session, select
-from .models.models import Equipment, MuscleGroup, Exercise, Set
+
 from .logger.logger import Logger
-from pathlib import Path
+from .models.models import Equipment, Exercise, MuscleGroup, Set
 
 logger = Logger(__name__)
 # set logging level to info
@@ -78,7 +80,7 @@ def create_exercises(db: Session):
             continue
 
         primary_muscle_group = db.exec(select(MuscleGroup).where(MuscleGroup.name == exercise_data['primaryMuscleGroup'])).first()
-        
+
         secondary_muscle_groups = db.exec(select(MuscleGroup).where(MuscleGroup.name.in_(exercise_data['secondaryMuscleGroups']))).all()
         equipment_instances = db.exec(select(Equipment).where(Equipment.name.in_(exercise_data['equipment']))).all()
 
@@ -92,7 +94,7 @@ def create_exercises(db: Session):
 
         db_exercise = Exercise(
             name=exercise_data['name'],
-            type=exercise_data['type'],
+            type=exercise_data['type'].lower(),
             primary_muscle_group=primary_muscle_group,
             secondary_muscle_groups=secondary_muscle_groups,
             equipment=equipment_instances
