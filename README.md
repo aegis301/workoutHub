@@ -96,7 +96,7 @@ The API returns data in **MessagePack** format for efficient serialization. All 
 
 ### Project Structure
 
-```
+```plaintext
 workoutHub/
 ├── backend/
 │   ├── models/          # SQLModel definitions
