@@ -11,6 +11,10 @@ A comprehensive workout tracking and analytics platform built with FastAPI and P
 - **Progress Analytics**: Track performance over time
 - **Data Import**: Import workouts from Strong app CSV exports
 
+## 📋 Development Guidelines
+
+For contributors and AI assistants: Please review [`.copilot-instructions.md`](./.copilot-instructions.md) for project-specific coding standards, patterns, and requirements before making changes.
+
 ## 🚀 Quick Start
 
 ### Prerequisites

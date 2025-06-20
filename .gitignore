@@ -197,3 +197,6 @@ frontend/yarn-error.log*
 
 # Vercel
 frontend/.vercel
+
+# VS Code
+.vscode/settings.json
