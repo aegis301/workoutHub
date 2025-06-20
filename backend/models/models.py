@@ -1,3 +1,12 @@
+"""
+Database models for the WorkoutHub application.
+
+This module defines the SQLModel classes that represent the core entities
+in the workout tracking system, including exercises, sets, equipment, and muscle groups.
+
+The models use SQLModel which provides both Pydantic validation and SQLAlchemy ORM functionality.
+"""
+
 from datetime import datetime
 from enum import Enum
 from typing import List, Optional
@@ -5,29 +14,65 @@ from typing import List, Optional
 from sqlmodel import Field, Relationship, SQLModel
 
 
-# This linking model is needed for many-to-many relationship between Exercise and MuscleGroup.
 class ExerciseMuscleGroupLink(SQLModel, table=True):
+    """
+    Linking table for many-to-many relationship between Exercise and MuscleGroup.
+    
+    This allows exercises to target multiple secondary muscle groups beyond their primary target.
+    """
     exercise_id: Optional[int] = Field(default=None, foreign_key="exercise.id", primary_key=True)
     muscle_group_id: Optional[int] = Field(default=None, foreign_key="musclegroup.id", primary_key=True)
 
 
 class ExerciseEquipmentLink(SQLModel, table=True):
+    """
+    Linking table for many-to-many relationship between Exercise and Equipment.
+    
+    This allows exercises to be performed with multiple types of equipment.
+    """
     exercise_id: Optional[int] = Field(default=None, foreign_key="exercise.id", primary_key=True)
     equipment_id: Optional[int] = Field(default=None, foreign_key="equipment.id", primary_key=True)
 
 
 class Equipment(SQLModel, table=True):
+    """
+    Represents gym equipment or bodyweight options used in exercises.
+    
+    Examples: Barbell, Dumbbell, Cable Machine, Bodyweight, etc.
+    
+    Attributes:
+        id: Primary key
+        name: Unique name of the equipment (max 100 characters)
+        exercises: Exercises that can use this equipment
+        sets: Sets performed with this equipment
+    """
     id: Optional[int] = Field(default=None, primary_key=True)
     name: str = Field(max_length=100, unique=True)
 
-    # SQLModel handles relationships natively with `Relationship`
+    # Relationships
     exercises: List["Exercise"] = Relationship(back_populates="equipment", link_model=ExerciseEquipmentLink)
     sets: List["Set"] = Relationship(back_populates="equipment")
 
 
 class MuscleGroup(SQLModel, table=True):
+    """
+    Represents muscle groups in a hierarchical structure.
+    
+    Supports parent-child relationships for organizing muscle groups
+    (e.g., Upper Body -> Chest -> Upper Chest).
+    
+    Attributes:
+        id: Primary key
+        name: Unique name of the muscle group (max 100 characters)
+        parent_id: Optional reference to parent muscle group
+        children: Child muscle groups
+        parent: Parent muscle group
+        primary_exercises: Exercises that primarily target this muscle group
+        secondary_exercises: Exercises that secondarily target this muscle group
+    """
     id: Optional[int] = Field(default=None, primary_key=True)
     name: str = Field(max_length=100, unique=True)
+    parent_id: Optional[int] = Field(default=None, foreign_key="musclegroup.id")
     parent_id: Optional[int] = Field(default=None, foreign_key="musclegroup.id")
 
     # Self-referential relationship for parent-child muscle groups
